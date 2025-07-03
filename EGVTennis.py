@@ -24,7 +24,13 @@ st.markdown(
 )
 
 
-
+st.markdown("""
+    <style>
+      #MainMenu {visibility: hidden;}
+      footer {visibility: hidden;}
+      header {visibility: hidden;}
+    </style>
+""", unsafe_allow_html=True)
 
 
 st.markdown('<p style="font-size:40px;font-weight: bold;text-align:center;vertical-align:middle;color:blue;margin:0px;padding:0px">EGV Tennis Open - 2025</p>', unsafe_allow_html=True)
