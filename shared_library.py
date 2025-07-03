@@ -5,9 +5,13 @@ import streamlit as st
 from collections import defaultdict
 import pprint
 from typing import List, Optional, Tuple, Set
+import os
 
 
-
+@st.cache_data()
+def convert_df(df):
+    # IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv().encode('utf-8')
 
 def display_point(player1_score, player2_score):
 
@@ -209,6 +213,51 @@ class Player:
         return f"{self.name}(P:{self.points}, S:{self.seed}, O:{self.opponents})"
 
 
+
+@st.cache_data()
+def Load_MatchResults():
+    df = pd.read_csv("Match_Results.csv")
+
+    # Convert 'Schedule_Date' to datetime (date only)
+    df['Schedule Date'] = pd.to_datetime(df['Schedule Date'], format='%d-%b-%Y')
+
+    # Convert 'Schedule_Time' to datetime.time
+    df['Schedule Time'] = pd.to_datetime(df['Schedule Time'], format='%I:%M %p').dt.time
+
+    # Optional: combine date and time into a single datetime column
+    df['Scheduled_DateTime'] = df.apply(lambda row: pd.Timestamp.combine(row['Schedule Date'], row['Schedule Time']), axis=1)
+
+    return df
+
+@st.cache_data()
+def Load_Players():
+    df = pd.read_csv("PlayerList.csv")
+    matches=Load_MatchResults()
+
+    players = []
+    for i in df.index:
+        id = i
+        seed = df.loc[i,'Rank']
+        name = df.loc[i,'Name']
+        players.append(Player(id,name,seed=seed))
+
+
+    if len(matches) > 0 :
+        for j in players:
+            id = j.id
+            matches_id = matches[(matches['Player1#'] == id) | (matches['Player2#'] == id)]
+
+            for _, row in matches_id.iterrows():
+
+                if id == row['Player1#']:
+                    j.opponents.add(row['Player2#'])
+                else:
+                    j.opponents.add(row['Player1#'])
+
+
+
+    return players
+
 def group_players_by_points(players: List[Player]) -> dict:
     groups = defaultdict(list)
     for p in players:
@@ -220,7 +269,6 @@ def swiss_pairing(players: List[Player]) -> List[Tuple[Player, Optional[Player]]
     #st.write(players)
     pairings = []
     grouped = group_players_by_points(players)
-    print(grouped)
     floaters = []
 
     for point in list(grouped.keys()):
@@ -287,16 +335,16 @@ def get_markdown_col_fields(field_label, field_value, format_amt = 'N'):
 
     return markdown_txt
 
-def get_markdown_table(data, header='Y', footer='Y'):
+def get_markdown_table(data, header='Y', footer='N'):
 
-
+    #st.write(data)
     if header == 'Y':
 
         cols = data.columns
         ncols = len(cols)
         if ncols < 5:
             html_script = "<table><style> table {border-collapse: collapse;width: 100%; border: 1px solid #ddd;}th {background-color: #ffebcc;padding:0px;} td {font-size='5px;text-align:center;padding:0px;'}tr:nth-child(even) {background-color: #f2f2f2;}</style><thead><tr style='width:100%;border:none;font-family:Courier; color:Red; font-size:14px'>"
-        elif ncols < 7:
+        elif ncols < 8:
             html_script = "<table><style> table {border-collapse: collapse;width: 100%; border: 1px solid #ddd;}th {background-color: #ffebcc;padding:0px;} td {font-size='5px;text-align:center;padding:0px;'}tr:nth-child(even) {background-color: #f2f2f2;}</style><thead><tr style='width:100%;border:none;font-family:Courier; color:Red; font-size:12px'>"
         else:
             html_script = "<table><style> table {border-collapse: collapse;width: 100%; border: 1px solid #ddd;}th {background-color: #ffebcc;padding:0px;} td {font-size='5px;text-align:center;padding:0px;'}tr:nth-child(even) {background-color: #f2f2f2;}</style><thead><tr style='width:100%;border:none;font-family:Courier; color:Red; font-size:10px'>"
@@ -312,7 +360,7 @@ def get_markdown_table(data, header='Y', footer='Y'):
     for j in data.index:
         if ncols < 5:
             html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:12px;padding:1px;';>"
-        elif ncols < 7:
+        elif ncols < 8:
             html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:11px;padding:1px;';>"
         else:
             html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:9px;padding:1px;';>"
@@ -330,8 +378,11 @@ def get_markdown_table(data, header='Y', footer='Y'):
 
 
 def player_standings():
-    df=st.session_state.match_results
-    players = st.session_state.player_list
+
+    df=Load_MatchResults()
+    players = Load_Players()
+
+
 
     player_stat_rec = []
 
@@ -344,21 +395,24 @@ def player_standings():
         id = i.id
         opponents = i.opponents
 
-        matches = df[(df['Id1'] == id) | (df['Id2'] == id)]
+        matches = df[(df['Player1#'] == id) | (df['Player2#'] == id)]
 
-        matches_won = matches[matches['Winner'] == id]
-        matches_lost = matches[matches['Winner'] != id]
+
+        matches_won = matches[matches['Winner_Id'] == id]
+        matches_lost = matches[(matches['Winner_Id'] != id) & (matches['Winner_Id'].notna())]
 
         n_wins = len(matches_won)
         n_losses = len(matches_lost)
 
+        i.points = n_wins
+
         if n_wins > 0:
-            tb2 = get_tb(id, matches_won)
+            tb2 = get_tb(id, matches_won, players)
 
         if n_losses > 0:
-            tb3 = get_tb(id, matches_lost)
+            tb3 = get_tb(id, matches_lost, players)
 
-        tot_matches = len(matches)
+        tot_matches = len(matches[matches['Status']=='Completed'])
 
         i_opp_points = 0
         for j in opponents:
@@ -376,13 +430,13 @@ def player_standings():
     return player_rank.sort_values(['Points','TB1', 'TB2', 'TB3'], ascending=False)
 
 
-def get_tb(id,results):
+def get_tb(id,results,players):
 
     players = st.session_state.player_list
     tb2_tot = 0
     for _, row in results.iterrows():
-        id_1 = row['Id1']
-        id_2 = row['Id2']
+        id_1 = row['Player1#']
+        id_2 = row['Player2#']
 
 
         if id == id_1:
@@ -392,3 +446,54 @@ def get_tb(id,results):
 
 
     return tb2_tot
+
+def get_markdown_player_standings(data, image_column):
+
+    image_dir = "./images"
+    def_image = "default.webp"
+
+
+    cols = data.columns
+    ncols = len(cols)
+    if ncols < 5:
+        html_script = "<table><style> table {border-collapse: collapse;width: 100%; border: 1px solid #ddd;}th {background-color: #ffebcc;padding:0px;} td {font-size='5px;text-align:center;padding:0px;'}tr:nth-child(even) {background-color: #f2f2f2;}</style><thead><tr style='width:100%;border:none;font-family:Courier; color:Red; font-size:14px'>"
+    elif ncols < 7:
+        html_script = "<table><style> table {border-collapse: collapse;width: 100%; border: 1px solid #ddd;}th {background-color: #ffebcc;padding:0px;} td {font-size='5px;text-align:center;padding:0px;'}tr:nth-child(even) {background-color: #f2f2f2;}</style><thead><tr style='width:100%;border:none;font-family:Courier; color:Red; font-size:12px'>"
+    else:
+        html_script = "<table><style> table {border-collapse: collapse;width: 100%; border: 1px solid #ddd;}th {background-color: #ffebcc;padding:0px;} td {font-size='5px;text-align:center;padding:0px;'}tr:nth-child(even) {background-color: #f2f2f2;}</style><thead><tr style='width:100%;border:none;font-family:Courier; color:Red; font-size:10px'>"
+
+    html_script = html_script + "<style>img.player-image {height: 24px; vertical-align: middle; margin-right: 6px;}</style>"
+
+    for i in cols:
+        if 'Fund' in i or 'Name' in i:
+            html_script = html_script + "<th style='text-align:left'>{}</th>".format(i)
+        else:
+            html_script = html_script + "<th style='text-align:center''>{}</th>".format(i)
+
+    html_script = html_script + "</tr></thead><tbody>"
+    for j in data.index:
+        if ncols < 5:
+            html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:12px;padding:1px;';>"
+        elif ncols < 7:
+            html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:11px;padding:1px;';>"
+        else:
+            html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:9px;padding:1px;';>"
+
+        a = data.loc[j]
+        for k in cols:
+            if image_column in k :
+                last_name = a[k].split()[-1]
+                image_file_name = f"{last_name}.webp"
+                image_path = os.path.join(image_dir, image_file_name)
+
+                if not os.path.exists(image_path):
+                    image_path = os.path.join(image_dir, def_image)
+
+
+                html_script = html_script + '<td><img src="{}" class="player-image">{}</td>'.format(image_path,a[k])
+            else:
+                html_script = html_script + "<td style='padding:2px;text-align:center' rowspan='1'>{}</td>".format(a[k])
+
+    html_script = html_script + '</tbody></table>'
+
+    return html_script
