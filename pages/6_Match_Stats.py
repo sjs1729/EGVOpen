@@ -141,7 +141,7 @@ df.set_index("Match#", inplace=True)
 default_image_path = f"{image_dir}/default.jpg"
 
 match_list = [f"{i}-{df.loc[i,'Player1 Name']} vs {df.loc[i,'Player2 Name']}" for i in df.index]
-left, right = st.columns((4,6))
+left, right = st.columns((5,6))
 
 match_sel = left.selectbox("Select Match",match_list,0,label_visibility='collapsed')
 left.write("  ")
@@ -154,19 +154,22 @@ match_score = df.loc[match_no,'Match Score']
 if winner == player1:
     html_text = f"""
 <div style='text-align: center; font-size: 24px;'>
-  <b>{player1}</b> defeated <b>{player2}</b> by
+  <b>Winner: </b>  <b>{player1}</b><BR>
   <b><span style='color: #e74c3c'>{match_score}</span></b>
 </div>
 """
 else:
     html_text = f"""
-                    <span><b>{player1}</b> lost to <b>{player2}</b> by
-                    <b><span style='color:#e74c3c'>{match_score}</span></b></span>
-                """
-right.markdown('<BR><BR>',unsafe_allow_html=True)
+<div style='text-align: center; font-size: 24px;'>
+  <b>Winner: </b>  <b>{player2}</b><BR>
+  <b><span style='color: #e74c3c'>{match_score}</span></b>
+</div>
+"""
+right.markdown('<BR>',unsafe_allow_html=True)
+right.write("  ")
 
 right.markdown(html_text,unsafe_allow_html=True)
-right.markdown('<BR><BR>',unsafe_allow_html=True)
+right.markdown('<BR>',unsafe_allow_html=True)
 
 
 
@@ -184,6 +187,7 @@ except:
 df = pd.read_csv("MatchStat.csv")
 
 player1_stat = {
+                'Games Won':0,
                 'Total Points Won':0,
                 'Points Win %':0,
                 'Aces':0,
@@ -202,6 +206,7 @@ player1_stat = {
                 }
 
 player2_stat = {
+                'Games Won':0,
                 'Total Points Won':0,
                 'Points Win %':0,
                 'Aces':0,
@@ -230,9 +235,12 @@ for _, row in df_match.iterrows():
     server = row['Server']
     receiver = row['Receiver']
 
-    #st.write(row['First Serves'])
-
     if player1 == server:
+        if int(row['Total Points Won']) > int(row['Total Points Lost']):
+            player1_stat['Games Won'] += 1
+        else:
+            player2_stat['Games Won'] += 1
+
         player1_stat['Total Points Won']  += int(row['Total Points Won'])
         player2_stat['Total Points Won']  += int(row['Total Points Lost'])
         player1_stat['First Serves'] += int(row['First Serves'])
@@ -250,6 +258,11 @@ for _, row in df_match.iterrows():
 
     elif player2 == server:
 
+        if int(row['Total Points Won']) > int(row['Total Points Lost']):
+            player2_stat['Games Won'] += 1
+        else:
+            player1_stat['Games Won'] += 1
+
         player2_stat['Total Points Won']  += int(row['Total Points Won'])
         player1_stat['Total Points Won']  += int(row['Total Points Lost'])
         player2_stat['First Serves'] += int(row['First Serves'])
@@ -261,6 +274,8 @@ for _, row in df_match.iterrows():
         player2_stat['Second Serve Loss'] += int(row['Second Serve Loss'])
         player2_stat['Double Faults'] += int(row['Double Faults'])
         player2_stat['Aces'] += int(row['Aces'])
+
+
 
         #st.write(server,receiver,row['Total Points Won'], row['Total Points Lost'])
 
@@ -286,7 +301,7 @@ player2_stat['Second Serve Win %'] = round(100*(player2_stat['Second Serve Wins'
 
 stat_rec = []
 
-display_stats = ['Total Points Won','Points Win %','Aces','Double Faults','First Serve %','First Serve Win %',
+display_stats = ['Games Won','Total Points Won','Points Win %','Aces','Double Faults','First Serve %','First Serve Win %',
                  'Second Serve %','Second Serve Win %']
 
 for stat in player1_stat:

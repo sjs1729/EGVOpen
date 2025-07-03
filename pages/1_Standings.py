@@ -48,7 +48,7 @@ p_standing = player_standings()
 p_standing['Rank']=p_standing['Rank'].apply(lambda x: int(x))
 
 
-html_text = get_markdown_table(p_standing[display_cols])
+html_text = get_markdown_table(p_standing[display_cols].sort_values(['Rank','Player Name']))
 #st.write(html_text)
 st.markdown(html_text, unsafe_allow_html=True)
 
