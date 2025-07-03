@@ -229,7 +229,6 @@ def Load_MatchResults():
 
     return df
 
-@st.cache_data()
 def Load_Players():
     df = pd.read_csv("PlayerList.csv")
     matches=Load_MatchResults()
@@ -245,7 +244,11 @@ def Load_Players():
     if len(matches) > 0 :
         for j in players:
             id = j.id
+
             matches_id = matches[(matches['Player1#'] == id) | (matches['Player2#'] == id)]
+
+            matches_won = matches_id[matches_id['Winner_Id'] == id]
+            players[id].points = len(matches_won)
 
             for _, row in matches_id.iterrows():
 
@@ -253,6 +256,7 @@ def Load_Players():
                     j.opponents.add(row['Player2#'])
                 else:
                     j.opponents.add(row['Player1#'])
+
 
 
 
@@ -382,9 +386,9 @@ def player_standings():
     df=Load_MatchResults()
     players = Load_Players()
 
-
-
     player_stat_rec = []
+
+    #                       \st.write(players)
 
 
     for i in players:
@@ -394,6 +398,8 @@ def player_standings():
 
         id = i.id
         opponents = i.opponents
+        #st.write(id, opponents)
+
 
         matches = df[(df['Player1#'] == id) | (df['Player2#'] == id)]
 
@@ -403,6 +409,8 @@ def player_standings():
 
         n_wins = len(matches_won)
         n_losses = len(matches_lost)
+
+
 
         i.points = n_wins
 
@@ -416,8 +424,13 @@ def player_standings():
 
         i_opp_points = 0
         for j in opponents:
+
+            #st.write(i, j)
             i_opp_points += players[j].points
 
+
+
+        #st.write(i, i_opp_points)
 
 
         values = id, i.name, tot_matches,n_wins, n_losses,i.points, i_opp_points, tb2, tb3, 1000000*i.points+ 10000*i_opp_points + 100* tb2 + tb3

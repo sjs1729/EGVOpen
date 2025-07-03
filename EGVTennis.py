@@ -42,31 +42,7 @@ def Initial_Player_List():
 initial_player_list = Initial_Player_List()
 
 
-@st.cache_data()
-def Load_Players():
-    df = pd.read_csv("PlayerList.csv")
-    players = []
-    for i in df.index:
-        id = i
-        seed = df.loc[i,'Rank']
-        name = df.loc[i,'Name']
-        players.append(Player(id,name,seed=seed))
 
-    return players
-
-def Load_MatchResults():
-    df = pd.read_csv("Match_Results.csv")
-
-    # Convert 'Schedule_Date' to datetime (date only)
-    df['Schedule Date'] = pd.to_datetime(df['Schedule Date'], format='%d-%b-%Y')
-
-    # Convert 'Schedule_Time' to datetime.time
-    df['Schedule Time'] = pd.to_datetime(df['Schedule Time'], format='%I:%M %p').dt.time
-
-    # Optional: combine date and time into a single datetime column
-    df['Scheduled_DateTime'] = df.apply(lambda row: pd.Timestamp.combine(row['Schedule Date'], row['Schedule Time']), axis=1)
-
-    return df
 
 
 
