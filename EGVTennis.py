@@ -29,7 +29,8 @@ st.markdown(
 
 st.markdown('<p style="font-size:40px;font-weight: bold;text-align:center;vertical-align:middle;color:blue;margin:0px;padding:0px">EGV Tennis Open - 2025</p>', unsafe_allow_html=True)
 
-st.image("images/EGV_TL.jpeg", width=1500)
+left,centre, right = st.columns((1,10,1))
+centre.image("images/EGV_TL.jpeg", width=1000)
 
 @st.cache_data()
 def Initial_Player_List():
