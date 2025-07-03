@@ -345,9 +345,9 @@ def get_markdown_table(data, header='Y', footer='N'):
         if ncols < 5:
             html_script = "<table><style> table {border-collapse: collapse;width: 100%; border: 1px solid #ddd;}th {background-color: #ffebcc;padding:0px;} td {font-size='5px;text-align:center;padding:0px;'}tr:nth-child(even) {background-color: #f2f2f2;}</style><thead><tr style='width:100%;border:none;font-family:Courier; color:Red; font-size:14px'>"
         elif ncols < 8:
-            html_script = "<table><style> table {border-collapse: collapse;width: 100%; border: 1px solid #ddd;}th {background-color: #ffebcc;padding:0px;} td {font-size='5px;text-align:center;padding:0px;'}tr:nth-child(even) {background-color: #f2f2f2;}</style><thead><tr style='width:100%;border:none;font-family:Courier; color:Red; font-size:12px'>"
+            html_script = "<table><style> table {border-collapse: collapse;width: 100%; border: 1px solid #ddd;}th {background-color: #ffebcc;padding:0px;} td {font-size='5px;text-align:center;padding:0px;'}tr:nth-child(even) {background-color: #f2f2f2;}</style><thead><tr style='width:100%;border:none;font-family:Courier; color:Red; font-size:14px'>"
         else:
-            html_script = "<table><style> table {border-collapse: collapse;width: 100%; border: 1px solid #ddd;}th {background-color: #ffebcc;padding:0px;} td {font-size='5px;text-align:center;padding:0px;'}tr:nth-child(even) {background-color: #f2f2f2;}</style><thead><tr style='width:100%;border:none;font-family:Courier; color:Red; font-size:10px'>"
+            html_script = "<table><style> table {border-collapse: collapse;width: 100%; border: 1px solid #ddd;}th {background-color: #ffebcc;padding:0px;} td {font-size='5px;text-align:center;padding:0px;'}tr:nth-child(even) {background-color: #f2f2f2;}</style><thead><tr style='width:100%;border:none;font-family:Courier; color:Red; font-size:14px'>"
 
 
         for i in cols:
@@ -363,7 +363,7 @@ def get_markdown_table(data, header='Y', footer='N'):
         elif ncols < 8:
             html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:11px;padding:1px;';>"
         else:
-            html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:9px;padding:1px;';>"
+            html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:12px;padding:1px;';>"
 
         a = data.loc[j]
         for k in cols:
@@ -427,7 +427,7 @@ def player_standings():
     player_rank.set_index('Player ID', inplace=True)
     player_rank['Rank'] = player_rank['RatingPoints'].rank(ascending=False, method='min')
     player_rank['Rank']=player_rank['Rank'].apply(lambda x: int(x))
-    return player_rank.sort_values(['Points','TB1', 'TB2', 'TB3'], ascending=False)
+    return player_rank.sort_values(['Points','TB1', 'TB2', 'TB3','Player Name'], ascending=False)
 
 
 def get_tb(id,results,players):
@@ -459,7 +459,7 @@ def get_markdown_player_standings(data, image_column):
     elif ncols < 7:
         html_script = "<table><style> table {border-collapse: collapse;width: 100%; border: 1px solid #ddd;}th {background-color: #ffebcc;padding:0px;} td {font-size='5px;text-align:center;padding:0px;'}tr:nth-child(even) {background-color: #f2f2f2;}</style><thead><tr style='width:100%;border:none;font-family:Courier; color:Red; font-size:12px'>"
     else:
-        html_script = "<table><style> table {border-collapse: collapse;width: 100%; border: 1px solid #ddd;}th {background-color: #ffebcc;padding:0px;} td {font-size='5px;text-align:center;padding:0px;'}tr:nth-child(even) {background-color: #f2f2f2;}</style><thead><tr style='width:100%;border:none;font-family:Courier; color:Red; font-size:10px'>"
+        html_script = "<table><style> table {border-collapse: collapse;width: 100%; border: 1px solid #ddd;}th {background-color: #ffebcc;padding:0px;} td {font-size='8px;text-align:center;padding:0px;'}tr:nth-child(even) {background-color: #f2f2f2;}</style><thead><tr style='width:100%;border:none;font-family:Courier; color:Red; font-size:10px'>"
 
     html_script = html_script + "<style>img.player-image {height: 24px; vertical-align: middle; margin-right: 6px;}</style>"
 
@@ -476,7 +476,7 @@ def get_markdown_player_standings(data, image_column):
         elif ncols < 7:
             html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:11px;padding:1px;';>"
         else:
-            html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:9px;padding:1px;';>"
+            html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:14px;padding:1px;';>"
 
         a = data.loc[j]
         for k in cols:
