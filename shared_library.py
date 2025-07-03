@@ -432,7 +432,6 @@ def player_standings():
 
 def get_tb(id,results,players):
 
-    players = st.session_state.player_list
     tb2_tot = 0
     for _, row in results.iterrows():
         id_1 = row['Player1#']
