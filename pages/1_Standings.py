@@ -9,8 +9,9 @@ import os
 st.set_page_config(
     page_title="Tennis Open",
     page_icon="tennis_open.ico",
-    layout="wide"
-    )
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 
 st.markdown(
@@ -23,6 +24,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 # Hide Streamlit menu and footer
 hide_streamlit_style = """
         <style>
@@ -31,8 +33,10 @@ hide_streamlit_style = """
         """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
+
 def get_tournament_status():
     df = Load_MatchResults()
+
     nrows = len(df)
 
     round = 1
@@ -50,7 +54,7 @@ nRound = get_tournament_status()
 
 display_cols=['Rank','Player Name','Matches Played','Wins#','Loses#','Points','TB1', 'TB2', 'TB3']
 
-p_standing = player_standings()
+p_standing = player_standings(1)
 p_standing['Rank']=p_standing['Rank'].apply(lambda x: int(x))
 
 
