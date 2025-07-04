@@ -232,7 +232,7 @@ def Load_MatchResults():
 def Load_Players():
     df = pd.read_csv("PlayerList.csv")
     matches=Load_MatchResults()
-
+    matches = matches[matches['Round#'] == 1]
     players = []
     for i in df.index:
         id = i
@@ -356,7 +356,7 @@ def get_markdown_table(data, header='Y', footer='N'):
 
         for i in cols:
             if 'Fund' in i or 'Name' in i:
-                html_script = html_script + "<th style='text-align:left'>{}</th>".format(i)
+                html_script = html_script + "<th style='text-align:center'>{}</th>".format(i)
             else:
                 html_script = html_script + "<th style='text-align:center''>{}</th>".format(i)
 
@@ -371,8 +371,8 @@ def get_markdown_table(data, header='Y', footer='N'):
 
         a = data.loc[j]
         for k in cols:
-            if 'Fund' in k or 'Name' in k:
-                html_script = html_script + "<td style='padding:2px;text-align:left' rowspan='1'>{}</td>".format(a[k])
+            if k in ['Round#']:
+                html_script = html_script + "<td style='padding:2px;text-align:center' rowspan='1'>{}</td>".format(int(a[k]))
             else:
                 html_script = html_script + "<td style='padding:2px;text-align:center' rowspan='1'>{}</td>".format(a[k])
 
@@ -381,10 +381,12 @@ def get_markdown_table(data, header='Y', footer='N'):
     return html_script
 
 
-def player_standings():
+def player_standings(round):
 
     df=Load_MatchResults()
+    df=df[df['Round#']==round]
     players = Load_Players()
+
 
     player_stat_rec = []
 
@@ -426,7 +428,7 @@ def player_standings():
         for j in opponents:
 
             #st.write(i, j)
-            i_opp_points += players[j].points
+            i_opp_points += players[int(j)].points
 
 
 
@@ -447,9 +449,8 @@ def get_tb(id,results,players):
 
     tb2_tot = 0
     for _, row in results.iterrows():
-        id_1 = row['Player1#']
-        id_2 = row['Player2#']
-
+        id_1 = int(row['Player1#'])
+        id_2 = int(row['Player2#'])
 
         if id == id_1:
             tb2_tot = tb2_tot + players[id_2].points

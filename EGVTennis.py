@@ -9,7 +9,7 @@ st.set_page_config(
     page_title="Tennis Open",
     page_icon="tennis_open.ico",
     layout="wide",
-    initial_sidebar_state="expanded"    
+    initial_sidebar_state="expanded"
 )
 
 
@@ -23,6 +23,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 # Hide Streamlit menu and footer
 hide_streamlit_style = """
         <style>
@@ -31,13 +32,6 @@ hide_streamlit_style = """
         """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
-st.markdown("""
-    <style>
-      #MainMenu {visibility: hidden;}
-      footer {visibility: hidden;}
-      header {visibility: hidden;}
-    </style>
-""", unsafe_allow_html=True)
 
 
 st.markdown('<p style="font-size:40px;font-weight: bold;text-align:center;vertical-align:middle;color:blue;margin:0px;padding:0px">EGV Tennis Open - 2025</p>', unsafe_allow_html=True)
@@ -70,8 +64,8 @@ match_results = Load_MatchResults()
 
 incomplete_status = ['Scheduled','Re-Scheduled','Rain Delayed']
 
-completed_matches = match_results[match_results['Status'] == 'Completed'].sort_values('Match#')
-sched_matches = match_results[match_results['Status'].isin(incomplete_status)].sort_values('Scheduled_DateTime')
+completed_matches = match_results[match_results['Status'] == 'Completed'].sort_values(['Round#','Match#'])
+sched_matches = match_results[match_results['Status'].isin(incomplete_status)].sort_values(['Round#','Scheduled_DateTime'])
 
 sched_match_cols = ['Match#','Round#','Player1 Name','Player2 Name','Scheduled Date','Schedule Time','Status']
 completed_match_cols = ['Match#','Round#','Player1 Name','Player2 Name','Match Date','Match Score','Winner']
