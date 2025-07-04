@@ -8,8 +8,9 @@ from shared_library import *
 st.set_page_config(
     page_title="Tennis Open",
     page_icon="tennis_open.ico",
-    layout="wide"
-    )
+    layout="wide",
+    initial_sidebar_state="expanded"    
+)
 
 
 st.markdown(
