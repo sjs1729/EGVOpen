@@ -117,21 +117,7 @@ def get_markdown_stat_table(data, header='Y', footer='N'):
 
         a = data.loc[j]
         for k in cols:
-
-            if '%' in a['Match Stats']:
-                if k == 'Match Stats':
-                    html_script = html_script + "<td style='padding:2px;text-align:center' rowspan='1'>{}</td>".format(a[k])
-                else:
-                    if a[k] == 100.0:
-                        html_script = html_script + "<td style='padding:2px;text-align:center' rowspan='1'>{}</td>".format(int(a[k]))
-                    else:
-                        html_script = html_script + "<td style='padding:2px;text-align:center' rowspan='1'>{}</td>".format(a[k])
-
-            else:
-                if k == 'Match Stats':
-                    html_script = html_script + "<td style='padding:2px;text-align:center' rowspan='1'>{}</td>".format(a[k])
-                else:
-                    html_script = html_script + "<td style='padding:2px;text-align:center' rowspan='1'>{}</td>".format(int(a[k]))
+            html_script = html_script + "<td style='padding:2px;text-align:center' rowspan='1'>{}</td>".format(a[k])
 
 
     html_script = html_script + '</tbody></table>'
@@ -197,10 +183,10 @@ df = pd.read_csv("MatchStat.csv")
 
 player1_stat = {
                 'Games Won':0,
-                'Total Points Won':0,
-                'Points Win %':0,
                 'Aces':0,
                 'Double Faults':0,
+                'Total Points Won':0,
+                'Points Win %':0,
                 'First Serve %':0.0,
                 'First Serve Win %':0.0,
                 'Second Serve %':0.0,
@@ -216,10 +202,10 @@ player1_stat = {
 
 player2_stat = {
                 'Games Won':0,
-                'Total Points Won':0,
-                'Points Win %':0,
                 'Aces':0,
                 'Double Faults':0,
+                'Total Points Won':0,
+                'Points Win %':0,
                 'First Serve %':0.0,
                 'First Serve Win %':0.0,
                 'Second Serve %':0.0,
@@ -289,21 +275,35 @@ for _, row in df_match.iterrows():
         #st.write(server,receiver,row['Total Points Won'], row['Total Points Lost'])
 
 
+temp_value = round(100 * player1_stat['Total Points Won']/ (player1_stat['Total Points Won'] + player2_stat['Total Points Won']),2)
+player1_stat['Points Win %'] = f"{player1_stat['Total Points Won']} ({temp_value}%)"
 
-player1_stat['Points Win %'] = round(100 * player1_stat['Total Points Won']/ (player1_stat['Total Points Won'] + player2_stat['Total Points Won']),2)
-player2_stat['Points Win %'] = round(100 * player2_stat['Total Points Won']/ (player1_stat['Total Points Won'] + player2_stat['Total Points Won']),2)
+temp_value = round(100 * player2_stat['Total Points Won']/ (player1_stat['Total Points Won'] + player2_stat['Total Points Won']),2)
+player2_stat['Points Win %'] = f"{player2_stat['Total Points Won']} ({temp_value}%)"
 
-player1_stat['First Serve %'] = round(100*((player1_stat['First Serves'] - player1_stat['First Serve Faults'])/player1_stat['First Serves']),2)
-player2_stat['First Serve %'] = round(100*((player2_stat['First Serves'] - player2_stat['First Serve Faults'])/player2_stat['First Serves']),2)
+temp_value = round(100*((player1_stat['First Serves'] - player1_stat['First Serve Faults'])/player1_stat['First Serves']),2)
+player1_stat['First Serve %'] = f"{player1_stat['First Serves']} ({temp_value}%)"
 
-player1_stat['First Serve Win %'] = round(100*(player1_stat['First Serve Wins']/player1_stat['First Serves']),2)
-player2_stat['First Serve Win %'] = round(100*(player2_stat['First Serve Wins']/player2_stat['First Serves']),2)
+temp_value = round(100*((player2_stat['First Serves'] - player2_stat['First Serve Faults'])/player2_stat['First Serves']),2)
+player2_stat['First Serve %'] = f"{player2_stat['First Serves']} ({temp_value}%)"
 
-player1_stat['Second Serve %'] = round(100*((player1_stat['Second Serves'] - player1_stat['Double Faults'])/player1_stat['Second Serves']),2)
-player2_stat['Second Serve %'] = round(100*((player2_stat['Second Serves'] - player2_stat['Double Faults'])/player2_stat['Second Serves']),2)
+temp_value = round(100*(player1_stat['First Serve Wins']/player1_stat['First Serves']),2)
+player1_stat['First Serve Win %'] = f"{player1_stat['First Serve Wins']} ({temp_value}%)"
 
-player1_stat['Second Serve Win %'] = round(100*(player1_stat['Second Serve Wins']/player1_stat['Second Serves']),2)
-player2_stat['Second Serve Win %'] = round(100*(player2_stat['Second Serve Wins']/player2_stat['Second Serves']),2)
+temp_value = round(100*(player2_stat['First Serve Wins']/player2_stat['First Serves']),2)
+player2_stat['First Serve Win %'] = f"{player2_stat['First Serve Wins']} ({temp_value}%)"
+
+temp_value = round(100*((player1_stat['Second Serves'] - player1_stat['Double Faults'])/player1_stat['Second Serves']),2)
+player1_stat['Second Serve %'] = f"{player1_stat['Second Serves']} ({temp_value}%)"
+
+temp_value = round(100*((player2_stat['Second Serves'] - player2_stat['Double Faults'])/player2_stat['Second Serves']),2)
+player2_stat['Second Serve %'] = f"{player2_stat['Second Serves']} ({temp_value}%)"
+
+temp_value = round(100*(player1_stat['Second Serve Wins']/player1_stat['Second Serves']),2)
+player1_stat['Second Serve Win %'] = f"{player1_stat['Second Serve Wins']} ({temp_value}%)"
+
+temp_value = round(100*(player2_stat['Second Serve Wins']/player2_stat['Second Serves']),2)
+player2_stat['Second Serve Win %'] = f"{player2_stat['Second Serve Wins']} ({temp_value}%)"
 
 
 #st.dataframe(df_match)
