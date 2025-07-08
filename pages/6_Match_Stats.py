@@ -229,12 +229,13 @@ for _, row in df_match.iterrows():
 
     server = row['Server']
     receiver = row['Receiver']
-
     if player1 == server:
         if int(row['Total Points Won']) > int(row['Total Points Lost']):
-            player1_stat['Games Won'] += 1
+            if int(row['Game#']) < 13:
+                player1_stat['Games Won'] += 1
         else:
-            player2_stat['Games Won'] += 1
+            if int(row['Game#']) < 13:
+                player2_stat['Games Won'] += 1
 
         player1_stat['Total Points Won']  += int(row['Total Points Won'])
         player2_stat['Total Points Won']  += int(row['Total Points Lost'])
@@ -254,9 +255,11 @@ for _, row in df_match.iterrows():
     elif player2 == server:
 
         if int(row['Total Points Won']) > int(row['Total Points Lost']):
-            player2_stat['Games Won'] += 1
+            if int(row['Game#']) < 13:
+                player2_stat['Games Won'] += 1
         else:
-            player1_stat['Games Won'] += 1
+            if int(row['Game#']) < 13:
+                player1_stat['Games Won'] += 1
 
         player2_stat['Total Points Won']  += int(row['Total Points Won'])
         player1_stat['Total Points Won']  += int(row['Total Points Lost'])
@@ -273,7 +276,6 @@ for _, row in df_match.iterrows():
 
 
         #st.write(server,receiver,row['Total Points Won'], row['Total Points Lost'])
-
 
 temp_value = round(100 * player1_stat['Total Points Won']/ (player1_stat['Total Points Won'] + player2_stat['Total Points Won']),2)
 player1_stat['Points Win %'] = f"{player1_stat['Total Points Won']} ({temp_value}%)"

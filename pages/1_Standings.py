@@ -54,7 +54,7 @@ nRound = get_tournament_status()
 
 display_cols=['Rank','Player Name','Matches Played','Wins#','Loses#','Points','TB1', 'TB2', 'TB3']
 
-p_standing = player_standings(1)
+p_standing = player_standings(2)
 p_standing['Rank']=p_standing['Rank'].apply(lambda x: int(x))
 
 
