@@ -231,10 +231,14 @@ def Load_MatchResults():
 
 def Load_Players():
     df = pd.read_csv("PlayerList.csv")
+    df.set_index('Sr#', inplace=True)
+
+
     matches=Load_MatchResults()
-    matches = matches[matches['Round#'] == 1]
+    matches = matches[matches['Status'] == 'Completed']
     players = []
     for i in df.index:
+
         id = i
         seed = df.loc[i,'Rank']
         name = df.loc[i,'Name']
@@ -245,10 +249,12 @@ def Load_Players():
         for j in players:
             id = j.id
 
+
+
             matches_id = matches[(matches['Player1#'] == id) | (matches['Player2#'] == id)]
 
             matches_won = matches_id[matches_id['Winner_Id'] == id]
-            players[id].points = len(matches_won)
+            j.points = len(matches_won)
 
             for _, row in matches_id.iterrows():
 
@@ -384,27 +390,27 @@ def get_markdown_table(data, header='Y', footer='N'):
 def player_standings(round):
 
     df=Load_MatchResults()
-    df=df[df['Round#']==round]
+    df=df[df['Round#'] <= 2]
     players = Load_Players()
 
 
     player_stat_rec = []
 
-    #                       \st.write(players)
+    #st.write(players)
 
 
-    for i in players:
+    for i in range(len(players)):
 
         tb2 = 0
         tb3 = 0
 
-        id = i.id
-        opponents = i.opponents
+        id = players[i].id
+        opponents = players[i].opponents
         #st.write(id, opponents)
 
 
         matches = df[(df['Player1#'] == id) | (df['Player2#'] == id)]
-
+        #st.write(matches)
 
         matches_won = matches[matches['Winner_Id'] == id]
         matches_lost = matches[(matches['Winner_Id'] != id) & (matches['Winner_Id'].notna())]
@@ -414,7 +420,7 @@ def player_standings(round):
 
 
 
-        i.points = n_wins
+        players[i].points = n_wins
 
         if n_wins > 0:
             tb2 = get_tb(id, matches_won, players)
@@ -426,16 +432,16 @@ def player_standings(round):
 
         i_opp_points = 0
         for j in opponents:
-
-            #st.write(i, j)
-            i_opp_points += players[int(j)].points
+            opponent_id = int(j) - 1
+            #st.write(i,players[i], opponent_id, players[opponent_id])
+            i_opp_points += players[opponent_id].points
 
 
 
         #st.write(i, i_opp_points)
 
 
-        values = id, i.name, tot_matches,n_wins, n_losses,i.points, i_opp_points, tb2, tb3, 1000000*i.points+ 10000*i_opp_points + 100* tb2 + tb3
+        values = id, players[i].name, tot_matches,n_wins, n_losses,players[i].points, i_opp_points, tb2, tb3, 1000000*players[i].points+ 10000*i_opp_points + 100* tb2 + tb3
         player_stat_rec.append(values)
 
     player_rank = pd.DataFrame(player_stat_rec, columns=['Player ID','Player Name','Matches Played','Wins#','Loses#','Points','TB1', 'TB2', 'TB3','RatingPoints'])
@@ -453,9 +459,9 @@ def get_tb(id,results,players):
         id_2 = int(row['Player2#'])
 
         if id == id_1:
-            tb2_tot = tb2_tot + players[id_2].points
+            tb2_tot = tb2_tot + players[id_2-1].points
         else:
-            tb2_tot = tb2_tot + players[id_1].points
+            tb2_tot = tb2_tot + players[id_1-1].points
 
 
     return tb2_tot
