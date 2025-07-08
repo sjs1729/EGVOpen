@@ -410,7 +410,7 @@ def player_standings(round):
 
 
         matches = df[(df['Player1#'] == id) | (df['Player2#'] == id)]
-        st.write(matches)
+        #st.write(matches)
 
         matches_won = matches[matches['Winner_Id'] == id]
         matches_lost = matches[(matches['Winner_Id'] != id) & (matches['Winner_Id'].notna())]
