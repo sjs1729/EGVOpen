@@ -387,10 +387,10 @@ def get_markdown_table(data, header='Y', footer='N'):
     return html_script
 
 
-def player_standings(round):
+def player_standings():
 
     df=Load_MatchResults()
-    df=df[df['Round#'] <= 2]
+    #df=df[df['Round#'] <= 2]
     players = Load_Players()
 
 
@@ -428,7 +428,6 @@ def player_standings(round):
         if n_losses > 0:
             tb3 = get_tb(id, matches_lost, players)
 
-        
         tot_matches = len(matches[matches['Status']=='Completed'])
 
         i_opp_points = 0
