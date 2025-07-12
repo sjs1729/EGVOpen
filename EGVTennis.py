@@ -62,7 +62,7 @@ st.markdown('<BR><BR>',unsafe_allow_html=True)
 
 match_results = Load_MatchResults()
 
-incomplete_status = ['Scheduled','Re-Scheduled','Rain Delayed']
+incomplete_status = ['Scheduled','Re-Scheduled','Rescheduled','Rain Delayed']
 
 completed_matches = match_results[match_results['Status'] == 'Completed'].sort_values(['Round#','Match#'])
 sched_matches = match_results[match_results['Status'].isin(incomplete_status)].sort_values(['Round#','Scheduled_DateTime'])
