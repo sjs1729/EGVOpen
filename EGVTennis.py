@@ -73,8 +73,8 @@ completed_match_cols = ['Match#','Round#','Player1 Name','Player2 Name','Match D
 completed_matches['Match Date'] = pd.to_datetime(completed_matches['Schedule Date']).dt.strftime('%B %d')
 sched_matches['Scheduled Date'] = pd.to_datetime(sched_matches['Schedule Date']).dt.strftime('%B %d')
 
-message = '🎉🎈🎂 Wishing our EGV diamond marquee  SHUBHAM HAZRA  a Very Happy Birthday 🎂🎈🎉! Loads of luck for the tournament ahead 🏆!'
-
+#message = '🎉🎈🎂 Wishing our EGV diamond marquee  SHUBHAM HAZRA  a Very Happy Birthday 🎂🎈🎉! Loads of luck for the tournament ahead 🏆!'
+message = ""
 st.markdown(f"""
         <style>
         .ticker-wrapper {{
