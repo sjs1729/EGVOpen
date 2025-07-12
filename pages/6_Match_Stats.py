@@ -295,17 +295,29 @@ player1_stat['First Serve Win %'] = f"{player1_stat['First Serve Wins']} ({temp_
 temp_value = round(100*(player2_stat['First Serve Wins']/player2_stat['First Serves']),2)
 player2_stat['First Serve Win %'] = f"{player2_stat['First Serve Wins']} ({temp_value}%)"
 
-temp_value = round(100*((player1_stat['Second Serves'] - player1_stat['Double Faults'])/player1_stat['Second Serves']),2)
-player1_stat['Second Serve %'] = f"{player1_stat['Second Serves']} ({temp_value}%)"
+if player1_stat['Second Serves'] != 0:
+    temp_value = round(100*((player1_stat['Second Serves'] - player1_stat['Double Faults'])/player1_stat['Second Serves']),2)
+    player1_stat['Second Serve %'] = f"{player1_stat['Second Serves']} ({temp_value}%)"
 
-temp_value = round(100*((player2_stat['Second Serves'] - player2_stat['Double Faults'])/player2_stat['Second Serves']),2)
-player2_stat['Second Serve %'] = f"{player2_stat['Second Serves']} ({temp_value}%)"
+    temp_value = round(100*(player1_stat['Second Serve Wins']/player1_stat['Second Serves']),2)
+    player1_stat['Second Serve Win %'] = f"{player1_stat['Second Serve Wins']} ({temp_value}%)"
 
-temp_value = round(100*(player1_stat['Second Serve Wins']/player1_stat['Second Serves']),2)
-player1_stat['Second Serve Win %'] = f"{player1_stat['Second Serve Wins']} ({temp_value}%)"
+else:
+    temp_value = "NA"
+    player1_stat['Second Serve %'] = f"{player1_stat['Second Serves']} ({temp_value}%)"
+    player1_stat['Second Serve Win %'] = f"{player1_stat['Second Serve Wins']} ({temp_value}%)"
 
-temp_value = round(100*(player2_stat['Second Serve Wins']/player2_stat['Second Serves']),2)
-player2_stat['Second Serve Win %'] = f"{player2_stat['Second Serve Wins']} ({temp_value}%)"
+if player2_stat['Second Serves'] != 0:
+    temp_value = round(100*((player2_stat['Second Serves'] - player2_stat['Double Faults'])/player2_stat['Second Serves']),2)
+    player2_stat['Second Serve %'] = f"{player2_stat['Second Serves']} ({temp_value}%)"
+
+    temp_value = round(100*(player2_stat['Second Serve Wins']/player2_stat['Second Serves']),2)
+    player2_stat['Second Serve Win %'] = f"{player2_stat['Second Serve Wins']} ({temp_value}%)"
+else:
+    temp_value = "NA"
+    player2_stat['Second Serve %'] = f"{player2_stat['Second Serves']} ({temp_value}%)"
+    player2_stat['Second Serve Win %'] = f"{player2_stat['Second Serve Wins']} ({temp_value}%)"
+
 
 
 #st.dataframe(df_match)
