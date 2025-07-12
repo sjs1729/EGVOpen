@@ -230,3 +230,33 @@ Round#,Match#,Game#,Server,Receiver,First Serves,First Serve Wins,First Serve Lo
 1,2,10,Shekhar Das,Rishav Kacholia,6,3,1,2,2,1,1,1,0,4,2
 1,2,11,Rishav Kacholia,Shekhar Das,10,4,4,2,2,2,0,0,0,6,4
 1,2,12,Shekhar Das,Rishav Kacholia,10,3,6,1,1,1,0,0,0,4,6
+2,30,1,Vikrant Chopra,Debasis Kundu,5,2,0,3,3,2,1,0,0,4,1
+2,30,2,Debasis Kundu,Vikrant Chopra,6,2,3,1,1,0,1,1,0,2,4
+2,30,3,Vikrant Chopra,Debasis Kundu,6,2,0,4,4,2,2,0,0,4,2
+2,30,4,Debasis Kundu,Vikrant Chopra,5,0,2,3,3,1,2,0,0,1,4
+2,30,5,Vikrant Chopra,Debasis Kundu,5,2,0,3,3,2,1,0,0,4,1
+2,30,6,Debasis Kundu,Vikrant Chopra,5,1,1,3,3,0,3,2,0,1,4
+2,44,1,Sudipta Chattoraj,Subhadip Chakraborty,8,3,3,2,2,0,2,2,0,3,5
+2,44,2,Subhadip Chakraborty,Sudipta Chattoraj,6,3,0,3,3,1,2,0,0,4,2
+2,44,3,Sudipta Chattoraj,Subhadip Chakraborty,5,1,1,3,3,0,3,1,0,1,4
+2,44,4,Subhadip Chakraborty,Sudipta Chattoraj,8,1,1,6,6,2,4,1,0,3,5
+2,44,5,Sudipta Chattoraj,Subhadip Chakraborty,4,0,3,1,1,0,1,0,0,0,4
+2,44,6,Subhadip Chakraborty,Sudipta Chattoraj,5,2,1,2,2,2,0,0,0,4,1
+2,44,7,Sudipta Chattoraj,Subhadip Chakraborty,4,0,4,0,0,0,0,0,0,0,4
+2,32,1,Jit Narayan De,Shlok Mitra,6,1,2,3,3,1,2,0,0,2,4
+2,32,2,Shlok Mitra,Jit Narayan De,18,5,3,10,10,3,7,1,1,8,10
+2,32,3,Jit Narayan De,Shlok Mitra,5,4,1,0,0,0,0,0,0,4,1
+2,32,4,Shlok Mitra,Jit Narayan De,6,0,3,3,3,2,1,0,0,2,4
+2,32,5,Jit Narayan De,Shlok Mitra,5,1,0,4,4,3,1,1,0,4,1
+2,32,6,Shlok Mitra,Jit Narayan De,5,1,1,3,3,0,3,1,0,1,4
+2,32,7,Jit Narayan De,Shlok Mitra,5,2,1,2,2,2,0,0,0,4,1
+2,24,1,Akhilesh Verma,Sourav Ghosh,4,2,0,2,2,2,0,0,0,4,0
+2,24,2,Sourav Ghosh,Akhilesh Verma,6,0,0,6,6,2,4,1,0,2,4
+2,24,3,Akhilesh Verma,Sourav Ghosh,10,3,1,6,6,3,3,0,0,6,4
+2,24,4,Sourav Ghosh,Akhilesh Verma,16,5,3,8,8,4,4,0,0,9,7
+2,24,5,Akhilesh Verma,Sourav Ghosh,6,3,0,3,3,1,2,1,0,4,2
+2,24,6,Sourav Ghosh,Akhilesh Verma,6,2,2,2,2,2,0,0,0,4,2
+2,24,7,Akhilesh Verma,Sourav Ghosh,5,2,0,3,3,2,1,0,0,4,1
+2,24,8,Sourav Ghosh,Akhilesh Verma,5,2,1,2,2,2,0,0,0,4,1
+2,24,9,Akhilesh Verma,Sourav Ghosh,12,4,0,8,8,3,5,0,0,7,5
+,,,,,,,,,,,0,,,0,0
