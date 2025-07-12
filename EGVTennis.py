@@ -73,6 +73,41 @@ completed_match_cols = ['Match#','Round#','Player1 Name','Player2 Name','Match D
 completed_matches['Match Date'] = pd.to_datetime(completed_matches['Schedule Date']).dt.strftime('%B %d')
 sched_matches['Scheduled Date'] = pd.to_datetime(sched_matches['Schedule Date']).dt.strftime('%B %d')
 
+message = '🎉🎈🎂 Wishing our EGV diamond marquee  SHUBHAM HAZRA  a Very Happy Birthday 🎂🎈🎉! Loads of luck for the tournament ahead 🏆!'
+
+st.markdown(f"""
+        <style>
+        .ticker-wrapper {{
+            width: 100%;
+            overflow: hidden;
+            #background-color: #fff8dc;
+            #border: 2px solid #f4c430;
+            border-radius: 8px;
+            white-space: nowrap;
+            margin-top: 10px;
+        }}
+
+        .ticker-text {{
+            display: inline-block;
+            padding-left: 100%;
+            animation: ticker 30s linear infinite;
+            font-weight: bold;
+            font-size: 22px;
+            color: #b22222;
+        }}
+
+        @keyframes ticker {{
+            0%   {{ transform: translateX(0%); }}
+            100% {{ transform: translateX(-100%); }}
+        }}
+        </style>
+
+        <div class="ticker-wrapper">
+            <div class="ticker-text">{message}</div>
+        </div>
+    """, unsafe_allow_html=True)
+
+
 
 
 
