@@ -488,7 +488,7 @@ def get_markdown_player_standings(data):
 
     for j in data.index:
 
-        url_link = "http://localhost:8501/Player_Stats?id={}".format(j)
+        url_link = "https://egvtennisopen.streamlit.app/Player_Stats?id={}".format(j)
 
         html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:12px;padding:1px;';>"
         a = data.loc[j]
@@ -539,11 +539,11 @@ def get_html_hyperlink_table(data, players, check_status='N'):
 
             if k == 'Match#':
                 if check_status != 'Y' :
-                    match_url_link = "http://localhost:8501/Match_Stats?mid={}".format(a[k])
+                    match_url_link = "https://egvtennisopen.streamlit.app/Match_Stats?mid={}".format(a[k])
                     html_script += "<td style='padding:2px; text-align:center' rowspan='1'><a href={} style='text-decoration:underline; color:blue;'>{}</a></td>".format(match_url_link,a[k])
                 else:
                     if a['Status'] == 'Completed':
-                        match_url_link = "http://localhost:8501/Match_Stats?mid={}".format(a[k])
+                        match_url_link = "https://egvtennisopen.streamlit.app/Match_Stats?mid={}".format(a[k])
                         html_script += "<td style='padding:2px; text-align:center' rowspan='1'><a href={} style='text-decoration:underline; color:blue;'>{}</a></td>".format(match_url_link,a[k])
                     else:
                         html_script = html_script + "<td style='padding:2px;text-align:center' rowspan='1'>{}</td>".format(a[k])
@@ -551,7 +551,7 @@ def get_html_hyperlink_table(data, players, check_status='N'):
             elif k in ['Against','Player Name','Player1 Name','Player2 Name']:
                 player_id = get_player_id(a[k],players)
                 if player_id > 0:
-                    player_url_link = "http://localhost:8501/Player_Stats?id={}".format(player_id)
+                    player_url_link = "https://egvtennisopen.streamlit.app/Player_Stats?id={}".format(player_id)
                     html_script += "<td style='padding:2px; text-align:center' rowspan='1'><a href={} style='text-decoration:underline; color:blue;'>{}</a></td>".format(player_url_link,a[k])
                 else:
                     html_script = html_script + "<td style='padding:2px;text-align:center' rowspan='1'>{}</td>".format(a[k])
