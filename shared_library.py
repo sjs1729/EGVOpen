@@ -210,7 +210,7 @@ class Player:
         self.opponents: Set[int] = set()  # Players already faced
 
     def __repr__(self):
-        return f"{self.name}(P:{self.points}, S:{self.seed}, O:{self.opponents})"
+        return f"{self.name}(ID:{self.id},P:{self.points}, S:{self.seed}, O:{self.opponents})"
 
 
 
@@ -234,6 +234,7 @@ def Load_Players():
     df.set_index('Sr#', inplace=True)
 
 
+
     matches=Load_MatchResults()
     matches = matches[matches['Status'] == 'Completed']
     players = []
@@ -242,7 +243,9 @@ def Load_Players():
         id = i
         seed = df.loc[i,'Rank']
         name = df.loc[i,'Name']
-        players.append(Player(id,name,seed=seed))
+        #st.write(i,name,seed)
+        players.append(Player(id=id,name=name,seed=seed))
+        #st.write(players)
 
 
     if len(matches) > 0 :
@@ -466,50 +469,92 @@ def get_tb(id,results,players):
 
     return tb2_tot
 
-def get_markdown_player_standings(data, image_column):
-
-    image_dir = "./images"
-    def_image = "default.webp"
+def get_markdown_player_standings(data):
 
 
     cols = data.columns
-    ncols = len(cols)
-    if ncols < 5:
-        html_script = "<table><style> table {border-collapse: collapse;width: 100%; border: 1px solid #ddd;}th {background-color: #ffebcc;padding:0px;} td {font-size='5px;text-align:center;padding:0px;'}tr:nth-child(even) {background-color: #f2f2f2;}</style><thead><tr style='width:100%;border:none;font-family:Courier; color:Red; font-size:14px'>"
-    elif ncols < 7:
-        html_script = "<table><style> table {border-collapse: collapse;width: 100%; border: 1px solid #ddd;}th {background-color: #ffebcc;padding:0px;} td {font-size='5px;text-align:center;padding:0px;'}tr:nth-child(even) {background-color: #f2f2f2;}</style><thead><tr style='width:100%;border:none;font-family:Courier; color:Red; font-size:12px'>"
-    else:
-        html_script = "<table><style> table {border-collapse: collapse;width: 100%; border: 1px solid #ddd;}th {background-color: #ffebcc;padding:0px;} td {font-size='8px;text-align:center;padding:0px;'}tr:nth-child(even) {background-color: #f2f2f2;}</style><thead><tr style='width:100%;border:none;font-family:Courier; color:Red; font-size:10px'>"
 
-    html_script = html_script + "<style>img.player-image {height: 24px; vertical-align: middle; margin-right: 6px;}</style>"
+
+    ncols = len(cols)
+
+    html_script = "<table><style> table {border-collapse: collapse;width: 100%; border: 1px solid #ddd;}th {background-color: #ffebcc;padding:0px;} td {font-size='5px;text-align:center;padding:0px;'}tr:nth-child(even) {background-color: #f2f2f2;}</style><thead><tr style='width:100%;border:none;font-family:Courier; color:Red; font-size:14px'>"
+
+    #html_script = html_script + "<style>img.player-image {height: 24px; vertical-align: middle; margin-right: 6px;}</style>"
 
     for i in cols:
-        if 'Fund' in i or 'Name' in i:
-            html_script = html_script + "<th style='text-align:left'>{}</th>".format(i)
-        else:
-            html_script = html_script + "<th style='text-align:center''>{}</th>".format(i)
+        html_script = html_script + "<th style='text-align:center''>{}</th>".format(i)
 
     html_script = html_script + "</tr></thead><tbody>"
-    for j in data.index:
-        if ncols < 5:
-            html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:12px;padding:1px;';>"
-        elif ncols < 7:
-            html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:11px;padding:1px;';>"
-        else:
-            html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:14px;padding:1px;';>"
 
+    for j in data.index:
+
+        url_link = "http://localhost:8501/Player_Stats?id={}".format(j)
+
+        html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:12px;padding:1px;';>"
         a = data.loc[j]
         for k in cols:
-            if image_column in k :
-                last_name = a[k].split()[-1]
-                image_file_name = f"{last_name}.webp"
-                image_path = os.path.join(image_dir, image_file_name)
 
-                if not os.path.exists(image_path):
-                    image_path = os.path.join(image_dir, def_image)
+            if k == 'Player Name':
+
+                html_script += "<td style='padding:2px; text-align:center' rowspan='1'><a href={} style='text-decoration:underline; color:blue;'>{}</a></td>".format(url_link,a[k])
+            else:
+                html_script = html_script + "<td style='padding:2px;text-align:center' rowspan='1'>{}</td>".format(a[k])
+
+    html_script = html_script + '</tbody></table>'
+
+    return html_script
 
 
-                html_script = html_script + '<td><img src="{}" class="player-image">{}</td>'.format(image_path,a[k])
+
+
+def get_player_id(player_name, players):
+    player_id = 0
+    for i in players:
+        if i.name == player_name:
+            return i.id
+
+    return player_id
+
+
+def get_html_hyperlink_table(data, players, check_status='N'):
+
+    cols = data.columns
+
+
+    ncols = len(cols)
+
+    html_script = "<table><style> table {border-collapse: collapse;width: 100%; border: 1px solid #ddd;}th {background-color: #ffebcc;padding:0px;} td {font-size='5px;text-align:center;padding:0px;'}tr:nth-child(even) {background-color: #f2f2f2;}</style><thead><tr style='width:100%;border:none;font-family:Courier; color:Red; font-size:13px'>"
+
+    for i in cols:
+        html_script = html_script + "<th style='text-align:center''>{}</th>".format(i)
+
+    html_script = html_script + "</tr></thead><tbody>"
+
+    for j in data.index:
+
+
+        html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:13px;padding:1px;';>".format()
+        a = data.loc[j]
+        for k in cols:
+
+            if k == 'Match#':
+                if check_status != 'Y' :
+                    match_url_link = "http://localhost:8501/Match_Stats?mid={}".format(a[k])
+                    html_script += "<td style='padding:2px; text-align:center' rowspan='1'><a href={} style='text-decoration:underline; color:blue;'>{}</a></td>".format(match_url_link,a[k])
+                else:
+                    if a['Status'] == 'Completed':
+                        match_url_link = "http://localhost:8501/Match_Stats?mid={}".format(a[k])
+                        html_script += "<td style='padding:2px; text-align:center' rowspan='1'><a href={} style='text-decoration:underline; color:blue;'>{}</a></td>".format(match_url_link,a[k])
+                    else:
+                        html_script = html_script + "<td style='padding:2px;text-align:center' rowspan='1'>{}</td>".format(a[k])
+
+            elif k in ['Against','Player Name','Player1 Name','Player2 Name']:
+                player_id = get_player_id(a[k],players)
+                if player_id > 0:
+                    player_url_link = "http://localhost:8501/Player_Stats?id={}".format(player_id)
+                    html_script += "<td style='padding:2px; text-align:center' rowspan='1'><a href={} style='text-decoration:underline; color:blue;'>{}</a></td>".format(player_url_link,a[k])
+                else:
+                    html_script = html_script + "<td style='padding:2px;text-align:center' rowspan='1'>{}</td>".format(a[k])
             else:
                 html_script = html_script + "<td style='padding:2px;text-align:center' rowspan='1'>{}</td>".format(a[k])
 

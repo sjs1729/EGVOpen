@@ -48,6 +48,9 @@ def Initial_Player_List():
 
 initial_player_list = Initial_Player_List()
 
+players = Load_Players()
+
+
 
 
 
@@ -121,10 +124,10 @@ tab1, tab2 = st.tabs(["Upcoming Matches","Completed Matches"])
 with tab1:
     st.markdown('<BR>',unsafe_allow_html=True)
 
-    html_txt = get_markdown_table(sched_matches[sched_match_cols])
+    html_txt = get_html_hyperlink_table(sched_matches[sched_match_cols],players,'Y')
     st.markdown(html_txt, unsafe_allow_html=True)
 
 with tab2:
     st.markdown('<BR>',unsafe_allow_html=True)
-    html_txt = get_markdown_table(completed_matches[completed_match_cols])
+    html_txt = get_html_hyperlink_table(completed_matches[completed_match_cols],players)
     st.markdown(html_txt, unsafe_allow_html=True)
