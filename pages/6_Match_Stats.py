@@ -59,17 +59,6 @@ def Initial_Player_List():
 initial_player_list = Initial_Player_List()
 
 
-@st.cache_data()
-def Load_Players():
-    df = pd.read_csv("PlayerList.csv")
-    players = []
-    for i in df.index:
-        id = i
-        seed = df.loc[i,'Rank']
-        name = df.loc[i,'Name']
-        players.append(Player(id,name,seed=seed))
-
-    return players
 
 def Load_MatchResults():
     df = pd.read_csv("Match_Results.csv")
@@ -136,15 +125,29 @@ df.set_index("Match#", inplace=True)
 default_image_path = f"{image_dir}/default.jpg"
 
 match_list = [f"{i}-{df.loc[i,'Player1 Name']} vs {df.loc[i,'Player2 Name']}" for i in df.index]
+
+param_id = st.query_params.get("mid")
+if param_id:
+    match_id = int(param_id)
+    match_string = f"{match_id}-{df.loc[match_id,'Player1 Name']} vs {df.loc[match_id,'Player2 Name']}"
+    def_match_id = match_list.index(match_string)
+else:
+    def_match_id = 0
+
+
 left, right = st.columns((5,6))
 
-match_sel = left.selectbox("Select Match",match_list,0,label_visibility='collapsed')
+match_sel = left.selectbox("Select Match",match_list,def_match_id,label_visibility='collapsed')
 left.write("  ")
 match_no = int(match_sel.split("-")[0])
 player1 = df.loc[match_no,'Player1 Name']
 player2 = df.loc[match_no,'Player2 Name']
 winner = df.loc[match_no,'Winner']
 match_score = df.loc[match_no,'Match Score']
+
+#params=st.get_params()
+
+
 
 if winner == player1:
     html_text = f"""
@@ -160,8 +163,8 @@ else:
   <b><span style='color: #e74c3c'>{match_score}</span></b>
 </div>
 """
-right.markdown('<BR>',unsafe_allow_html=True)
-right.write("  ")
+#right.markdown('<BR>',unsafe_allow_html=True)
+#right.write("  ")
 
 right.markdown(html_text,unsafe_allow_html=True)
 right.markdown('<BR>',unsafe_allow_html=True)

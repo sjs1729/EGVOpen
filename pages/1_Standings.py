@@ -55,12 +55,20 @@ nRound = get_tournament_status()
 display_cols=['Rank','Player Name','Matches Played','Wins#','Loses#','Points','TB1', 'TB2', 'TB3']
 
 p_standing = player_standings()
+
 p_standing['Rank']=p_standing['Rank'].apply(lambda x: int(x))
 
+html_text1 = get_markdown_player_standings(p_standing[display_cols].sort_values(['Rank','Player Name']))
+st.markdown(html_text1, unsafe_allow_html=True)
 
-html_text = get_markdown_table(p_standing[display_cols].sort_values(['Rank','Player Name']))
+
+
+#html_text = get_markdown_table(p_standing[display_cols].sort_values(['Rank','Player Name']))
+
+
+
 #st.write(html_text)
-st.markdown(html_text, unsafe_allow_html=True)
+#st.markdown(html_text, unsafe_allow_html=True)
 
 csvfile = convert_df(p_standing[display_cols])
 

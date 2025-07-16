@@ -69,7 +69,7 @@ for i, tab in enumerate(tabs, start=1):
         round_df['Schedule Date'] = round_df['Schedule Date'].dt.strftime('%d-%b-%y')
 
 
-        html_txt = get_markdown_table(round_df[display_cols].fillna("--"))
+        html_txt = get_html_hyperlink_table(round_df[display_cols].fillna("--"),players,'Y')
         st.markdown(html_txt, unsafe_allow_html=True)
 
 
