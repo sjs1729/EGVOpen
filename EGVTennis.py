@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import random as rm
 import streamlit as st
+from datetime import datetime
 from shared_library import *
 
 
@@ -65,16 +66,31 @@ st.markdown('<BR><BR>',unsafe_allow_html=True)
 
 match_results = Load_MatchResults()
 
-incomplete_status = ['Scheduled','Re-Scheduled','Rescheduled','Rain Delayed']
+incomplete_status = ['Scheduled','Re-Scheduled','Rescheduled','Rain Delayed','In-Progress']
 
 completed_matches = match_results[match_results['Status'] == 'Completed'].sort_values(['Round#','Match#'])
 sched_matches = match_results[match_results['Status'].isin(incomplete_status)].sort_values(['Round#','Scheduled_DateTime'])
-
 sched_match_cols = ['Match#','Round#','Player1 Name','Player2 Name','Scheduled Date','Schedule Time','Status']
 completed_match_cols = ['Match#','Round#','Player1 Name','Player2 Name','Match Date','Match Score','Winner']
 
 completed_matches['Match Date'] = pd.to_datetime(completed_matches['Schedule Date']).dt.strftime('%B %d')
 sched_matches['Scheduled Date'] = pd.to_datetime(sched_matches['Schedule Date']).dt.strftime('%B %d')
+
+
+st.markdown('<p style="font-size:20px;font-weight: bold;text-align:center;vertical-align:middle;color:blue;margin:0px;padding:0px">Matches Scheduled for Today:</p>', unsafe_allow_html=True)
+today = datetime.now().date()
+
+scroll_message = ""
+for _, row in sched_matches.iterrows():
+
+    s_date = row['Scheduled_DateTime']
+
+    if s_date.date() == today:
+
+        formatted_date = s_date.strftime("%-I:%M %p")
+        sch_matches_txt = f"| {row['Player1 Name']} vs {row['Player2 Name']} - {formatted_date}"
+        scroll_message = scroll_message + sch_matches_txt
+
 
 #message = '🎉🎈🎂 Wishing our EGV diamond marquee  SHUBHAM HAZRA  a Very Happy Birthday 🎂🎈🎉! Loads of luck for the tournament ahead 🏆!'
 message = ""
@@ -85,7 +101,7 @@ st.markdown(f"""
             overflow: hidden;
             #background-color: #fff8dc;
             #border: 2px solid #f4c430;
-            border-radius: 8px;
+            border-radius: 6px;
             white-space: nowrap;
             margin-top: 10px;
         }}
@@ -93,10 +109,10 @@ st.markdown(f"""
         .ticker-text {{
             display: inline-block;
             padding-left: 100%;
-            animation: ticker 30s linear infinite;
+            animation: ticker 80s linear infinite;
             font-weight: bold;
-            font-size: 22px;
-            color: #b22222;
+            font-size: 16px;
+            color: magenta;
         }}
 
         @keyframes ticker {{
@@ -106,8 +122,8 @@ st.markdown(f"""
         </style>
 
         <div class="ticker-wrapper">
-            <div class="ticker-text">{message}</div>
-        </div>
+            <div class="ticker-text">{scroll_message[1:]}</div>
+        </div><BR>
     """, unsafe_allow_html=True)
 
 
