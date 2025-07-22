@@ -52,7 +52,7 @@ st.markdown('<BR>', unsafe_allow_html=True)
 
 nRound = get_tournament_status()
 
-display_cols=['Rank','Player Name','Matches Played','Wins#','Loses#','Points','TB1', 'TB2', 'TB3']
+display_cols=['Rank','Player Name','Matches Played','Wins#','Losses#','Points','TB1', 'TB2', 'TB3']
 
 p_standing = player_standings()
 
