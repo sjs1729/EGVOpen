@@ -447,7 +447,7 @@ def player_standings():
         values = id, players[i].name, tot_matches,n_wins, n_losses,players[i].points, i_opp_points, tb2, tb3, 1000000*players[i].points+ 10000*i_opp_points + 100* tb2 + tb3
         player_stat_rec.append(values)
 
-    player_rank = pd.DataFrame(player_stat_rec, columns=['Player ID','Player Name','Matches Played','Wins#','Loses#','Points','TB1', 'TB2', 'TB3','RatingPoints'])
+    player_rank = pd.DataFrame(player_stat_rec, columns=['Player ID','Player Name','Matches Played','Wins#','Losses#','Points','TB1', 'TB2', 'TB3','RatingPoints'])
     player_rank.set_index('Player ID', inplace=True)
     player_rank['Rank'] = player_rank['RatingPoints'].rank(ascending=False, method='min')
     player_rank['Rank']=player_rank['Rank'].apply(lambda x: int(x))
