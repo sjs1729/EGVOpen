@@ -1,67 +1,89 @@
 Match#,Round#,Player1#,Player1 Name,Player2#,Player2 Name,Schedule Date,Schedule Time,Match Score,Winner_Id,Winner,Status
-1,1,15,Prakash Panda,43,Sanjib Mahanta,27-Jun-2025,7:30 PM,6-1,15.0,Prakash Panda,Completed
-2,1,9,Rishav Kacholia,32,Shekhar Das,10-Jul-2025,7:30 PM,6-4,9.0,Rishav Kacholia,Completed
-3,1,5,Vineet Gupta,23,Mohit Kumar,1-Jul-2025,8:00 PM,7-5,5.0,Vineet Gupta,Completed
-4,1,18,Kamal Agarwal,35,Agniswar Chatterjee,28-Jun-2025,6:30 PM,6-0,18.0,Kamal Agarwal,Completed
-5,1,1,Dipanjan Mitra,37,Vivaan Chandra,29-Jun-2025,8:00 PM,6-2,1.0,Dipanjan Mitra,Completed
-6,1,4,Jit Narayan De,34,Subhadip Chakraborty,1-Jul-2025,8:30 PM,6-0,4.0,Jit Narayan De,Completed
-7,1,6,Sneh Mitra,28,Sisir Biswas,29-Jun-2025,7:00 PM,6-0,6.0,Sneh Mitra,Completed
-8,1,7,Vikrant Chopra,30,Tanmay Saha,28-Jun-2025,7:30 PM,6-4,7.0,Vikrant Chopra,Completed
-9,1,8,Arin Neogi,29,Samarth Gupta,28-Jun-2025,5:00 PM,6-0,8.0,Arin Neogi,Completed
-10,1,22,Ajit Bikram,44,Tarun Sharma,28-Jun-2025,4:30 PM,6-1,22.0,Ajit Bikram,Completed
-11,1,13,Vivek Karmakar,40,Vipul Gupta,28-Jun-2025,7:30 PM,6-1,13.0,Vivek Karmakar,Completed
-12,1,14,Debasis Kundu,33,Atulya Priyadarshi,29-Jun-2025,5:00 PM,6-3,14.0,Debasis Kundu,Completed
-13,1,16,Sourav Ghosh,25,Amik Parua,29-Jun-2025,5:30 PM,6-1,16.0,Sourav Ghosh,Completed
-14,1,17,Satyabrata Mishra,41,Abhishek Kumar,29-Jun-2025,7:30 AM,6-1,17.0,Satyabrata Mishra,Completed
-15,1,19,Sanjoy Saha,27,Sagir Gogoi,29-Jun-2025,8:30 PM,6-1,19.0,Sanjoy Saha,Completed
-16,1,20,Shlok Mitra,31,Saikat Maity,29-Jun-2025,8:00 PM,6-0,20.0,Shlok Mitra,Completed
-17,1,11,CKP,36,Avijit Paul,1-Jul-2025,9:00 PM,6-1,11.0,CKP,Completed
-18,1,21,Anuj Pandit,39,Neelabh Neeraj,29-Jun-2025,8:00 PM,6-0,21.0,Anuj Pandit,Completed
-19,1,12,Akhilesh Verma,38,Arka Sinha,29-Jun-2025,8:30 PM,6-0,12.0,Akhilesh Verma,Completed
-20,1,3,Shubham Hazra,26,Sudipta Chattoraj,2-Jul-2025,8:00 PM,Bye,3.0,Shubham Hazra,Completed
-21,1,2,Sumit Raychaudhuri,24,Ishmeet,1-Jul-2025,9:00 PM,6-4,2.0,Sumit Raychaudhuri,Completed
-22,1,10,Sandip Kundu,42,Dr. Niraj Priyadarshi,2-Jul-2025,8:30 PM,3-6,42.0,Dr. Niraj Priyadarshi,Completed
-23,2,17,Satyabrata Mishra,19,Sanjoy Saha,5-Jul-2025,4:30 PM,0-6,19.0,Sanjoy Saha,Completed
-24,2,16,Sourav Ghosh,12,Akhilesh Verma,11-Jul-2025,7:30 PM,3-6,12.0,Akhilesh Verma,Completed
-25,2,5,Vineet Gupta,15,Prakash Panda,5-Jul-2025,5:00 PM,6-4,5.0,Vineet Gupta,Completed
-26,2,18,Kamal Agarwal,3,Shubham Hazra,6-Jul-2025,5:30 PM,6-6 (1-7),3.0,Shubham Hazra,Completed
-27,2,1,Dipanjan Mitra,8,Arin Neogi,5-Jul-2025,5:30 PM,6-2,1.0,Dipanjan Mitra,Completed
-28,2,22,Ajit Bikram,13,Vivek Karmakar,6-Jul-2025,6:00 PM,3-6,13.0,Vivek Karmakar,Completed
-29,2,6,Sneh Mitra,42,Dr. Niraj Priyadarshi,12-Jul-2025,8:00 PM,6-4,6.0,Sneh Mitra,Completed
-30,2,7,Vikrant Chopra,14,Debasis Kundu,11-Jul-2025,8:30 PM,6-0,7.0,Vikrant Chopra,Completed
-31,2,2,Sumit Raychaudhuri,21,Anuj Pandit,6-Jul-2025,8:00 PM,6-3,2.0,Sumit Raychaudhuri,Completed
-32,2,20,Shlok Mitra,4,Jit Narayan De,12-Jul-2025,7:00 PM,1-6,4.0,Jit Narayan De,Completed
-33,2,11,CKP,9,Rishav Kacholia,23-Jul-2025,8:30 PM,,,,Scheduled
-34,2,24,Ishmeet,41,Abhishek Kumar,12-Jul-2025,7:30 AM,6-6(7-5),24.0,Ishmeet,Completed
-35,2,33,Atulya Priyadarshi,29,Samarth Gupta,12-Jul-2025,6:30 PM,6-1,33.0,Atulya Priyadarshi,Completed
-36,2,44,Tarun Sharma,39,Neelabh Neeraj,12-Jul-2025,6:00 PM,6-2,44.0,Tarun Sharma,Completed
-37,2,25,Amik Parua,36,Avijit Paul,14-Jul-2025,7:30 PM,6-1,25.0,Amik Parua,Completed
-38,2,40,Vipul Gupta,32,Shekhar Das,18-Jul-2025,7:00 PM,2-6,32.0,Vipul Gupta,Completed
-39,2,23,Mohit Kumar,37,Vivaan Chandra,10-Jul-2025,8:00 PM,6-0,23.0,Mohit Kumar,Completed
-40,2,31,Saikat Maity,28,Sisir Biswas,20-Jul-2025,8:00 AM,3-0,,,Scheduled
-41,2,27,Sagir Gogoi,10,Sandip Kundu,12-Jul-2025,8:30 PM,6-4,27.0,Sagir Gogoi,Completed
-42,2,43,Sanjib Mahanta,35,Agniswar Chatterjee,5-Jul-2025,8:30 PM,6-2,43.0,Sanjib Mahanta,Completed
-43,2,38,Arka Sinha,30,Tanmay Saha,12-Jul-2025,7:00 PM,4-6,30.0,Tanmay Saha,Completed
-44,2,34,Subhadip Chakraborty,26,Sudipta Chattoraj,11-Jul-2025,8:30 PM,6-1,34.0,Subhadip Chakraborty,Completed
-45,3,10,Sandip Kundu,35,Agniswar Chatterjee,20-Jul-2025,8:00 PM,,,,Scheduled
-46,3,29,Samarth Gupta,0,Loser (Saikat vs Sisir),20-Jul-2025,6:30 PM,,,,Scheduled
-47,3,36,Avijit Paul,41,Abhishek Kumar,20-Jul-2025,8:00 PM,,,,Scheduled
-48,3,40,Vipul Gupta,39,Neelabh Neeraj,20-Jul-2025,8:00 PM,,,,Scheduled
-49,3,38,Arka Sinha,26,Sudipta Chattoraj,19-Jul-2025,8:00 PM,Bye,38.0,Arka Sinha,Completed
-50,3,37,Vivaan Chandra,14,Debasis Kundu,16-Jul-2025,5:00 PM,Bye,37.0,Vivaan Chandra,Completed
-51,3,20,Shlok Mitra,33,Atulya Priyadarshi,20-Jul-2025,8:30 PM,,,,Scheduled
-52,3,32,Shekhar Das,0,Winner (Sisir / Saikat),26-Jul-2025,8:00 PM,,,,Scheduled
-53,3,16,Sourav Ghosh,8,Arin Neogi,18-Jul-2025,7:00 PM,4-6,8.0,Arin Neogi,Completed
-54,3,18,Kamal Agarwal,0,Loser  (CKP/Rishav),26-Jul-2025,8:00 PM,,,,Scheduled
-55,3,44,Tarun Sharma,21,Anuj Pandit,20-Jul-2025,8:00 PM,3-6,21,Anuj Pandit,Completed
-56,3,43,Sanjib Mahanta,23,Mohit Kumar,19-Jul-2025,7:00 PM,0-6,23.0,Mohit Kumar,Completed
-57,3,22,Ajit Bikram,42,Dr. Niraj Priyadarshi,20-Jul-2025,4:30 PM,7-5,22,Ajit Bikram,Completed
-58,3,17,Satyabrata Mishra,25,Amik Parua,20-Jul-2025,5:30 PM,6-3,17,Satyabrata Mishra,Completed
-59,3,24,Ishmeet,34,Subhadip Chakraborty,19-Jul-2025,6:30 PM,6-2,24.0,Ishmeet,Completed
-60,3,27,Sagir Gogoi,30,Tanmay Saha,20-Jul-2025,6:00 PM,7-6,27,Sagir Gogoi,Completed
-61,3,15,Prakash Panda,13,Vivek Karmakar,25-Jul-2025,7:30 AM,,,,Scheduled
-62,3,2,Sumit Raychaudhuri,4,Jit Narayan De,19-Jul-2025,7:30 PM,5-7,4.0,Jit Narayan De,Completed
-63,3,3,Shubham Hazra,0,Winner (CKP / Rishav),26-Jul-2025,8:00 PM,,,,Scheduled
-64,3,7,Vikrant Chopra,6,Sneh Mitra,18-Jul-2025,9:00 PM,2-6,6.0,Sneh Mitra,Completed
-65,3,12,Akhilesh Verma,1,Dipanjan Mitra,17-Jul-2025,8:00 PM,2-6,1.0,Dipanjan Mitra,Completed
-66,3,5,Vineet Gupta,19,Sanjoy Saha,26-Jul-2025,7:30 PM,,,,Scheduled
+1,1,15.0,Prakash Panda,43.0,Sanjib Mahanta,27-Jun-2025,7:30 PM,6-1,15.0,Prakash Panda,Completed
+2,1,9.0,Rishav Kacholia,32.0,Shekhar Das,10-Jul-2025,7:30 PM,6-4,9.0,Rishav Kacholia,Completed
+3,1,5.0,Vineet Gupta,23.0,Mohit Kumar,1-Jul-2025,8:00 PM,7-5,5.0,Vineet Gupta,Completed
+4,1,18.0,Kamal Agarwal,35.0,Agniswar Chatterjee,28-Jun-2025,6:30 PM,6-0,18.0,Kamal Agarwal,Completed
+5,1,1.0,Dipanjan Mitra,37.0,Vivaan Chandra,29-Jun-2025,8:00 PM,6-2,1.0,Dipanjan Mitra,Completed
+6,1,4.0,Jit Narayan De,34.0,Subhadip Chakraborty,1-Jul-2025,8:30 PM,6-0,4.0,Jit Narayan De,Completed
+7,1,6.0,Sneh Mitra,28.0,Sisir Biswas,29-Jun-2025,7:00 PM,6-0,6.0,Sneh Mitra,Completed
+8,1,7.0,Vikrant Chopra,30.0,Tanmay Saha,28-Jun-2025,7:30 PM,6-4,7.0,Vikrant Chopra,Completed
+9,1,8.0,Arin Neogi,29.0,Samarth Gupta,28-Jun-2025,5:00 PM,6-0,8.0,Arin Neogi,Completed
+10,1,22.0,Ajit Bikram,44.0,Tarun Sharma,28-Jun-2025,4:30 PM,6-1,22.0,Ajit Bikram,Completed
+11,1,13.0,Vivek Karmakar,40.0,Vipul Gupta,28-Jun-2025,7:30 PM,6-1,13.0,Vivek Karmakar,Completed
+12,1,14.0,Debasis Kundu,33.0,Atulya Priyadarshi,29-Jun-2025,5:00 PM,6-3,14.0,Debasis Kundu,Completed
+13,1,16.0,Sourav Ghosh,25.0,Amik Parua,29-Jun-2025,5:30 PM,6-1,16.0,Sourav Ghosh,Completed
+14,1,17.0,Satyabrata Mishra,41.0,Abhishek Kumar,29-Jun-2025,7:30 AM,6-1,17.0,Satyabrata Mishra,Completed
+15,1,19.0,Sanjoy Saha,27.0,Sagir Gogoi,29-Jun-2025,8:30 PM,6-1,19.0,Sanjoy Saha,Completed
+16,1,20.0,Shlok Mitra,31.0,Saikat Maity,29-Jun-2025,8:00 PM,6-0,20.0,Shlok Mitra,Completed
+17,1,11.0,CKP,36.0,Avijit Paul,1-Jul-2025,9:00 PM,6-1,11.0,CKP,Completed
+18,1,21.0,Anuj Pandit,39.0,Neelabh Neeraj,29-Jun-2025,8:00 PM,6-0,21.0,Anuj Pandit,Completed
+19,1,12.0,Akhilesh Verma,38.0,Arka Sinha,29-Jun-2025,8:30 PM,6-0,12.0,Akhilesh Verma,Completed
+20,1,3.0,Shubham Hazra,26.0,Sudipta Chattoraj,2-Jul-2025,8:00 PM,Bye,3.0,Shubham Hazra,Completed
+21,1,2.0,Sumit Raychaudhuri,24.0,Ishmeet,1-Jul-2025,9:00 PM,6-4,2.0,Sumit Raychaudhuri,Completed
+22,1,10.0,Sandip Kundu,42.0,Dr. Niraj Priyadarshi,2-Jul-2025,8:30 PM,3-6,42.0,Dr. Niraj Priyadarshi,Completed
+23,2,17.0,Satyabrata Mishra,19.0,Sanjoy Saha,5-Jul-2025,4:30 PM,0-6,19.0,Sanjoy Saha,Completed
+24,2,16.0,Sourav Ghosh,12.0,Akhilesh Verma,11-Jul-2025,7:30 PM,3-6,12.0,Akhilesh Verma,Completed
+25,2,5.0,Vineet Gupta,15.0,Prakash Panda,5-Jul-2025,5:00 PM,6-4,5.0,Vineet Gupta,Completed
+26,2,18.0,Kamal Agarwal,3.0,Shubham Hazra,6-Jul-2025,5:30 PM,6-6 (1-7),3.0,Shubham Hazra,Completed
+27,2,1.0,Dipanjan Mitra,8.0,Arin Neogi,5-Jul-2025,5:30 PM,6-2,1.0,Dipanjan Mitra,Completed
+28,2,22.0,Ajit Bikram,13.0,Vivek Karmakar,6-Jul-2025,6:00 PM,3-6,13.0,Vivek Karmakar,Completed
+29,2,6.0,Sneh Mitra,42.0,Dr. Niraj Priyadarshi,12-Jul-2025,8:00 PM,6-4,6.0,Sneh Mitra,Completed
+30,2,7.0,Vikrant Chopra,14.0,Debasis Kundu,11-Jul-2025,8:30 PM,6-0,7.0,Vikrant Chopra,Completed
+31,2,2.0,Sumit Raychaudhuri,21.0,Anuj Pandit,6-Jul-2025,8:00 PM,6-3,2.0,Sumit Raychaudhuri,Completed
+32,2,20.0,Shlok Mitra,4.0,Jit Narayan De,12-Jul-2025,7:00 PM,1-6,4.0,Jit Narayan De,Completed
+33,2,11.0,CKP,9.0,Rishav Kacholia,23-Jul-2025,8:30 PM,6-2,11.0,CKP,Completed
+34,2,24.0,Ishmeet,41.0,Abhishek Kumar,12-Jul-2025,7:30 AM,6-6(7-5),24.0,Ishmeet,Completed
+35,2,33.0,Atulya Priyadarshi,29.0,Samarth Gupta,12-Jul-2025,6:30 PM,6-1,33.0,Atulya Priyadarshi,Completed
+36,2,44.0,Tarun Sharma,39.0,Neelabh Neeraj,12-Jul-2025,6:00 PM,6-2,44.0,Tarun Sharma,Completed
+37,2,25.0,Amik Parua,36.0,Avijit Paul,14-Jul-2025,7:30 PM,6-1,25.0,Amik Parua,Completed
+38,2,40.0,Vipul Gupta,32.0,Shekhar Das,18-Jul-2025,7:00 PM,2-6,32.0,Vipul Gupta,Completed
+39,2,23.0,Mohit Kumar,37.0,Vivaan Chandra,10-Jul-2025,8:00 PM,6-0,23.0,Mohit Kumar,Completed
+40,2,31.0,Saikat Maity,28.0,Sisir Biswas,30-Jul-2025,8:00 AM,3-0,,,Scheduled
+41,2,27.0,Sagir Gogoi,10.0,Sandip Kundu,12-Jul-2025,8:30 PM,6-4,27.0,Sagir Gogoi,Completed
+42,2,43.0,Sanjib Mahanta,35.0,Agniswar Chatterjee,5-Jul-2025,8:30 PM,6-2,43.0,Sanjib Mahanta,Completed
+43,2,38.0,Arka Sinha,30.0,Tanmay Saha,12-Jul-2025,7:00 PM,4-6,30.0,Tanmay Saha,Completed
+44,2,34.0,Subhadip Chakraborty,26.0,Sudipta Chattoraj,11-Jul-2025,8:30 PM,6-1,34.0,Subhadip Chakraborty,Completed
+45,3,10.0,Sandip Kundu,35.0,Agniswar Chatterjee,26-Jul-2025,8:00 PM,6-2,10.0,Sandip Kundu,Completed
+46,3,29.0,Samarth Gupta,28.0,Sisir Biswas,26-Jul-2025,6:30 PM,,,,Scheduled
+47,3,36.0,Avijit Paul,41.0,Abhishek Kumar,27-Jul-2025,8:00 PM,,,,Scheduled
+48,3,40.0,Vipul Gupta,39.0,Neelabh Neeraj,27-Jul-2025,8:00 PM,,,,Scheduled
+49,3,38.0,Arka Sinha,26.0,Sudipta Chattoraj,19-Jul-2025,8:00 PM,Bye,38.0,Arka Sinha,Completed
+50,3,37.0,Vivaan Chandra,14.0,Debasis Kundu,16-Jul-2025,5:00 PM,Bye,37.0,Vivaan Chandra,Completed
+51,3,20.0,Shlok Mitra,33.0,Atulya Priyadarshi,27-Jul-2025,8:30 PM,,,,Scheduled
+52,3,32.0,Shekhar Das,31.0,Saikat Maity,27-Jul-2025,8:00 PM,,,,Scheduled
+53,3,16.0,Sourav Ghosh,8.0,Arin Neogi,18-Jul-2025,7:00 PM,4-6,8.0,Arin Neogi,Completed
+54,3,18.0,Kamal Agarwal,9.0,Rishav Kacholia,27-Jul-2025,8:00 PM,,,,Scheduled
+55,3,44.0,Tarun Sharma,21.0,Anuj Pandit,20-Jul-2025,8:00 PM,3-6,21.0,Anuj Pandit,Completed
+56,3,43.0,Sanjib Mahanta,23.0,Mohit Kumar,19-Jul-2025,7:00 PM,0-6,23.0,Mohit Kumar,Completed
+57,3,22.0,Ajit Bikram,42.0,Dr. Niraj Priyadarshi,20-Jul-2025,4:30 PM,7-5,22.0,Ajit Bikram,Completed
+58,3,17.0,Satyabrata Mishra,25.0,Amik Parua,20-Jul-2025,5:30 PM,6-3,17.0,Satyabrata Mishra,Completed
+59,3,24.0,Ishmeet,34.0,Subhadip Chakraborty,19-Jul-2025,6:30 PM,6-2,24.0,Ishmeet,Completed
+60,3,27.0,Sagir Gogoi,30.0,Tanmay Saha,20-Jul-2025,6:00 PM,7-6,27.0,Sagir Gogoi,Completed
+61,3,15.0,Prakash Panda,13.0,Vivek Karmakar,26-Jul-2025,6:30 PM,2-6,13.0,Vivek Karmakar,Completed
+62,3,2.0,Sumit Raychaudhuri,4.0,Jit Narayan De,19-Jul-2025,7:30 PM,5-7,4.0,Jit Narayan De,Completed
+63,3,3.0,Shubham Hazra,11.0,CKP,27-Jul-2025,8:00 PM,,,,Scheduled
+64,3,7.0,Vikrant Chopra,6.0,Sneh Mitra,18-Jul-2025,9:00 PM,2-6,6.0,Sneh Mitra,Completed
+65,3,12.0,Akhilesh Verma,1.0,Dipanjan Mitra,17-Jul-2025,8:00 PM,2-6,1.0,Dipanjan Mitra,Completed
+66,3,5.0,Vineet Gupta,19.0,Sanjoy Saha,1-Aug-2025,6:30 PM,,,,Scheduled
+67,4,1.0,Dipanjan Mitra,,Winner of Match# 66,2-Aug-2025,6:30 PM,,,,TBD
+68,4,13.0,Vivek Karmakar,,Jit Narayan De,27-Jul-2025,6:30 PM,,,,TBD
+69,4,,Sneh Mitra,,Winner of Match# 63,1-Aug-2025,6:30 PM,,,,TBD
+70,4,,Sumit Raychaudhuri,,Winner of Match# 54,2-Aug-2025,6:30 PM,,,,TBD
+71,4,,Satyabrata Mishra,,Ajit Bikram,3-Aug-2025,6:30 PM,,,,TBD
+72,4,,Akhilesh Verma,,Anuj Pandit,2-Aug-2025,6:30 PM,,,,TBD
+73,4,,Vikrant Chopra,,Ishmeet,2-Aug-2025,6:30 PM,,,,TBD
+74,4,,Mohit Kumar,,Winner of Match# 52,2-Aug-2025,6:30 PM,,,,TBD
+75,4,,Arin Neogi,,Loser of Match# 66,2-Aug-2025,6:30 PM,,,,TBD
+76,4,,Sagir Gogoi,,Winner of Match# 51,2-Aug-2025,6:30 PM,,,,TBD
+77,4,,Winner of Match# 48,,Loser of Match# 63,3-Aug-2025,6:30 PM,,,,TBD
+78,4,,Loser of Match# 54,,Loser of Match# 51,3-Aug-2025,6:30 PM,,,,TBD
+79,4,,Sandip Kundu ,,Sanjib Mahanta,2-Aug-2025,6:30 PM,,,,TBD
+80,4,,Sourav Ghosh,,Tarun Sharma,2-Aug-2025,6:30 PM,,,,TBD
+81,4,,Winner of Match# 47,,Loser of Match# 52,3-Aug-2025,6:30 PM,,,,TBD
+82,4,,Vivaan Chandra,,Tanmay Saha,2-Aug-2025,6:30 PM,,,,TBD
+83,4,,Amik Parua,,Dr. Niraj Priyadarshi,2-Aug-2025,6:30 PM,,,,TBD
+84,4,,Subhadip Chakraborty,,Winner of Match# 46,2-Aug-2025,6:30 PM,,,,TBD
+85,4,,Prakash Panda,,Arka Sinha,27-Jul-2025,6:30 PM,,,,TBD
+86,4,,Sudipta Chattoraj,,Loser of Match# 46,2-Aug-2025,6:30 PM,,,,TBD
+87,4,,Loser of Match# 47,,Wild Card - Somnath Das / Kartavya,3-Aug-2025,6:30 PM,,,,TBD
+88,4,,Agniswar Chatterjee,,Loser of Match# 48,2-Aug-2025,6:30 PM,,,,TBD
