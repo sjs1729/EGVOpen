@@ -122,36 +122,6 @@ def get_markdown_stat_table(data, header='Y', footer='N'):
     return html_script
 
 
-@st.cache_data()
-def get_commentary(stat_df):
-
-    API_KEY = "AIzaSyDZe3Jo5HIs2WuO1mdgqqZOyncYz8IZyBc"
-    genai.configure(api_key=API_KEY)
-
-    if 'stat_df' in locals() or 'stat_df' in globals():
-        stat_df_string = stat_df.to_markdown(index=False)
-
-
-        prompt = f"""
-        You are a crowd captivating tennis match commentator
-        Give me a commentary on the tennis match as data given and make it under 20 words as well as entertaining and humorous and dont humiliate any players and make it polite tone and prefereably dont add statistics.
-
-        Match Data:
-        {stat_df_string}
-
-        Commentary:
-        """
-
-        try:
-            model = genai.GenerativeModel('gemini-2.5-flash')
-            response = model.generate_content(prompt)
-            return response.text
-        except Exception as e:
-            st.error(f"An error occurred: {e}")
-            st.warning("Please ensure your API key is correct and you have network connectivity.")
-    else:
-        st.warning("`stat_df` is not defined. Please ensure the DataFrame is loaded or created before pressing the button.")
-
 
 @st.cache_data()
 def get_match_stat(player1, player2, df_match):
