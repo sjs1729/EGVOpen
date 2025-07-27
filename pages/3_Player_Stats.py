@@ -33,6 +33,71 @@ img_style = """
     height: auto;
 """
 
+# Custom CSS
+st.markdown("""
+    <style>
+    .block-container {
+        padding-top: 2rem !important;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    th, td {
+        padding: 10px;
+        text-align: center;
+        font-size: 14px;
+    }
+    th {
+        background-color: #ffebcc;
+        font-weight: bold;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    .title {
+        font-size: 36px;
+        font-weight: bold;
+        text-align: center;
+        color: #004d99;
+        margin-bottom: 20px;
+    }
+    .stat-box {
+        padding: 16px;
+        border-radius: 12px;
+        background-color: #f0f8ff;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        margin-bottom: 10px;
+    }
+    @media screen and (max-width: 768px) {
+        .block-container {
+            padding: 0.5rem;
+        }
+        .title {
+            font-size: 28px;
+        }
+        th, td {
+            font-size: 12px;
+            padding: 6px;
+        }
+        .stat-box {
+            padding: 10px;
+        }
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+
+st.cache_data()
+def Load_MatchStats():
+    df = pd.read_csv("MatchStat.csv")
+
+    return df
+
 def get_html_table(data, players):
 
     cols = data.columns
@@ -55,11 +120,11 @@ def get_html_table(data, players):
         for k in cols:
 
             if k == 'Match#':
-                match_url_link = "https://egvtennisopen.streamlit.app/Match_Stats?mid={}".format(a[k])
+                match_url_link = "http://localhost:8501/Match_Stats?mid={}".format(a[k])
                 html_script += "<td style='padding:2px; text-align:center' rowspan='1'><a href={} style='text-decoration:underline; color:blue;'>{}</a></td>".format(match_url_link,a[k])
             elif k == 'Against':
                 player_id = get_player_id(a[k],players)
-                player_url_link = "https://egvtennisopen.streamlit.app/Player_Stats?id={}".format(player_id)
+                player_url_link = "http://localhost:8501/Player_Stats?id={}".format(player_id)
                 html_script += "<td style='padding:2px; text-align:center' rowspan='1'><a href={} style='text-decoration:underline; color:blue;'>{}</a></td>".format(player_url_link,a[k])
             else:
                 html_script = html_script + "<td style='padding:2px;text-align:center' rowspan='1'>{}</td>".format(a[k])
@@ -68,12 +133,159 @@ def get_html_table(data, players):
 
     return html_script
 
+@st.cache_data()
+def get_match_stat(player_name,df_match):
+
+
+    player_stat = {
+                    'Games Won':0,
+                    'Games Lost':0,
+                    'Aces':0,
+                    'Double Faults':0,
+                    'Points Won':0,
+                    'Points Lost':0,
+                    'Points Won %':0,
+                    'Points Won Serving':0,
+                    'Points Lost Serving':0,
+                    'Points Won Receiving':0,
+                    'Points Lost Receiving':0,
+                    'Points Won Serving %':0,
+                    'Points Won Receiving %':0,
+                    'First Serves':0,
+                    'First Serve Wins':0,
+                    'First Serve Loss':0,
+                    'First Serve Faults':0,
+                    'Second Serves':0,
+                    'Second Serve Wins':0,
+                    'Second Serve Loss':0,
+                    'First Serve %':0.0,
+                    'First Serve Win %':0.0,
+                    'Second Serve %':0.0,
+                    'Second Serve Win %':0.0,
+                    }
+
+
+
+    for _, row in df_match.iterrows():
+
+        server = row['Server']
+        receiver = row['Receiver']
+        if player_name == server:
+
+
+
+            if int(row['Game#']) < 13:
+                if int(row['Total Points Won']) > int(row['Total Points Lost']):
+                    player_stat['Games Won'] += 1
+                else:
+                    player_stat['Games Lost'] += 1
+
+
+
+
+            #player1_stat['Points won Serving']  += int(row['Total Points Won'])
+            player_stat['Points Won Serving'] += int(row['Total Points Won'])
+            player_stat['Points Lost Serving'] += int(row['Total Points Lost'])
+
+            player_stat['First Serves'] += int(row['First Serves'])
+            player_stat['First Serve Wins'] += int(row['First Serve Wins'])
+            player_stat['First Serve Faults'] += int(row['First Service Fault'])
+            player_stat['Second Serves'] += int(row['Second Serves'])
+            player_stat['Second Serve Wins'] += int(row['Second Serve Wins'])
+            player_stat['Double Faults'] += int(row['Double Faults'])
+            player_stat['Aces'] += int(row['Aces'])
+
+
+            #st.write(server,receiver,row['Total Points Won'], row['Total Points Lost'],player_stat['Points Won Serving'],player_stat['Points Lost Serving'])
+
+        elif player_name == receiver:
+
+            if int(row['Game#']) < 13:
+                if int(row['Total Points Won']) > int(row['Total Points Lost']):
+                    player_stat['Games Lost'] += 1
+                else:
+                    player_stat['Games Won'] += 1
+
+
+
+            player_stat['Points Won Receiving'] += int(row['Total Points Lost'])
+            player_stat['Points Lost Receiving'] += int(row['Total Points Won'])
+
+
+
+
+            #st.write(server,receiver,row['Total Points Won'], row['Total Points Lost'],player_stat['Points Won Receiving'],player_stat['Points Lost Receiving'])
+
+
+    player_stat['Points Won'] = player_stat['Points Won Serving'] + player_stat['Points Won Receiving']
+    player_stat['Points Lost'] = player_stat['Points Lost Serving'] + player_stat['Points Lost Receiving']
+    #st.write(player_stat['Points Won'],player_stat['Points Lost'])
+    temp_value = round(100 * player_stat['Points Won']/ (player_stat['Points Won'] + player_stat['Points Lost']),2)
+    player_stat['Points Won %'] = f"{player_stat['Points Won']} ({temp_value}%)"
+
+    #st.write(player_stat['Points Won %'])
+
+    temp_value = round(100 * player_stat['Points Won Serving']/ (player_stat['Points Won Serving'] + player_stat['Points Lost Receiving']),2)
+    player_stat['Points Won Serving %'] = f"{player_stat['Points Won Serving']} ({temp_value}%)"
+
+
+    temp_value = round(100 * player_stat['Points Won Receiving']/ (player_stat['Points Won Receiving'] + player_stat['Points Lost Serving']),2)
+    player_stat['Points Won Receiving %'] = f"{player_stat['Points Won Receiving']} ({temp_value}%)"
+
+
+    temp_value = round(100*((player_stat['First Serves'] - player_stat['First Serve Faults'])/player_stat['First Serves']),2)
+    player_stat['First Serve %'] = f"{player_stat['First Serves']} ({temp_value}%)"
+
+
+    temp_value = round(100*(player_stat['First Serve Wins']/player_stat['First Serves']),2)
+    player_stat['First Serve Win %'] = f"{player_stat['First Serve Wins']} ({temp_value}%)"
+
+
+    if player_stat['Second Serves'] != 0:
+        temp_value = round(100*((player_stat['Second Serves'] - player_stat['Double Faults'])/player_stat['Second Serves']),2)
+        player_stat['Second Serve %'] = f"{player_stat['Second Serves']} ({temp_value}%)"
+
+        temp_value = round(100*(player_stat['Second Serve Wins']/player_stat['Second Serves']),2)
+        player_stat['Second Serve Win %'] = f"{player_stat['Second Serve Wins']} ({temp_value}%)"
+
+    else:
+        temp_value = "NA"
+        player_stat['Second Serve %'] = f"{player_stat['Second Serves']} ({temp_value}%)"
+        player_stat['Second Serve Win %'] = f"{player_stat['Second Serve Wins']} ({temp_value}%)"
+
+
+
+    #st.write(player_stat)
+
+    #st.dataframe(df_match)
+
+    stat_rec = []
+
+    display_stats = ['Games Won','Games Lost','Points Won %','Points Won Serving %', 'Points Won Receiving %','Aces','Double Faults','First Serve %','First Serve Win %','Second Serve %','Second Serve Win %']
+
+    for stat in player_stat:
+
+        if stat in display_stats:
+            if stat != 'Tie Break Score':
+                values = stat,player_stat[stat]
+                stat_rec.append(values)
+            else:
+                if player_stat[stat] > 0:
+                    values = stat,player_stat[stat]
+                    stat_rec.append(values)
+
+
+    stat_df = pd.DataFrame(stat_rec, columns=['Match Stats','Player'])
+
+    #st.write(stat_df)
+
+    return stat_df
 
 image_dir = "images"
 
 
 st.markdown('<p style="font-size:40px;font-weight: bold;text-align:center;vertical-align:middle;color:blue;margin:0px;padding:0px">Player Stats</p>', unsafe_allow_html=True)
-st.markdown('<BR>', unsafe_allow_html=True)
+st.markdown('<BR><BR>', unsafe_allow_html=True)
 
 
 players = Load_Players()
@@ -92,21 +304,26 @@ p_standing = player_standings()
 default_image_path = f"{image_dir}/default.png"
 
 p_list = [f"{x.id}-{x.name}" for x in players]
-left,buf, right = st.columns((9,2,6))
+left,buf, right = st.columns((6,1,5))
 
-show_image = right.empty()
+
+
 player_sel = left.selectbox("Select Player",p_list,def_id,label_visibility='collapsed')
-#left.write("  ")
+left.write("  ")
 #left.write(player_sel)
 p_id = int(player_sel.split("-")[0])
 #p_last_name = player_sel.split("-")[1].split()[1]
 
+right.markdown('<BR><BR>', unsafe_allow_html=True)
+show_image = right.empty()
+show_match_stat = left.empty()
+
 image_path = f"{image_dir}/{p_id}.png"
 
 try:
-    show_image.image(image_path, width=200, output_format="PNG")
+    show_image.image(image_path, width=250, output_format="PNG")
 except:
-    show_image.image(default_image_path, width=200, output_format="PNG")
+    show_image.image(default_image_path, width=300, output_format="PNG")
 
 
 
@@ -117,10 +334,22 @@ df = Load_MatchResults()
 df=df[df['Status'] == 'Completed']
 
 matches_played = df[(df['Player1#']==p_id) | (df['Player2#']==p_id)]
-#st.write(matches_played)
-left.markdown(get_markdown_col_fields("Matches Played", len(matches_played), format_amt = 'N'),unsafe_allow_html=True)
-left.markdown(get_markdown_col_fields("Matches Won (Points)", players[p_id-1].points, format_amt = 'N'),unsafe_allow_html=True)
-left.markdown(get_markdown_col_fields("Current Position", int(current_position), format_amt = 'N'),unsafe_allow_html=True)
+match_list = [int(i) for i in matches_played['Match#'].unique()]
+
+df_stat = Load_MatchStats()
+df_match_stat = df_stat[df_stat['Match#'].isin(match_list)]
+
+df_all_match_stats = get_match_stat(players[p_id-1].name,df_match_stat)
+
+show_match_stat.markdown(get_markdown_table(df_all_match_stats), unsafe_allow_html=True)
+
+
+#st.write(df_all_match_stats)
+#left.markdown(get_markdown_col_fields("Matches Played", len(matches_played), format_amt = 'N'),unsafe_allow_html=True)
+#left.markdown(get_markdown_col_fields("Matches Won (Points)", players[p_id-1].points, format_amt = 'N'),unsafe_allow_html=True)
+#left.markdown(get_markdown_col_fields("Current Position", int(current_position), format_amt = 'N'),unsafe_allow_html=True)
+
+
 
 st.markdown('<BR>', unsafe_allow_html=True)
 
@@ -162,4 +391,3 @@ if len(match_history) > 0:
 
 #player_rank = player_standings()
 #html_script = get_markdown_table(player_rank)
-#st.markdown(html_script, unsafe_allow_html=True)
