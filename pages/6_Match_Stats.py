@@ -3,8 +3,6 @@ import numpy as np
 import random as rm
 import streamlit as st
 from shared_library import *
-import base64
-import google.generativeai as genai
 
 st.set_page_config(
     page_title="Tennis Open",
