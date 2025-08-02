@@ -127,17 +127,17 @@ def get_html_table(data, players):
     for j in data.index:
 
 
-        html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:14px;padding:1px;';>"
+        html_script = html_script + "<tr style='border:none;font-family:Courier; color:#0866FF; font-size:14px;padding:1px;';>"
         a = data.loc[j]
         for k in cols:
 
             if k == 'Match#':
                 match_url_link = "https://egvtennisopen.streamlit.app/Match_Stats?mid={}".format(a[k])
-                html_script += "<td style='padding:2px; text-align:center' rowspan='1'><a href={} style='text-decoration:underline; color:blue;'>{}</a></td>".format(match_url_link,a[k])
+                html_script += "<td style='padding:2px; text-align:center' rowspan='1'><a href={} style='text-decoration:underline; color:#0866FF;'>{}</a></td>".format(match_url_link,a[k])
             elif k == 'Against':
                 player_id = get_player_id(a[k],players)
                 player_url_link = "https://egvtennisopen.streamlit.app/Player_Stats?id={}".format(player_id)
-                html_script += "<td style='padding:2px; text-align:center' rowspan='1'><a href={} style='text-decoration:underline; color:blue;'>{}</a></td>".format(player_url_link,a[k])
+                html_script += "<td style='padding:2px; text-align:center' rowspan='1'><a href={} style='text-decoration:underline; color:#0866FF;'>{}</a></td>".format(player_url_link,a[k])
             else:
                 html_script = html_script + "<td style='padding:2px;text-align:center' rowspan='1'>{}</td>".format(a[k])
 
