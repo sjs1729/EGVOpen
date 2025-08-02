@@ -7,11 +7,12 @@ from shared_library import *
 
 
 st.set_page_config(
-    page_title="Tennis Open",
-    page_icon="tennis_open.ico",
+    page_title="EGV Tennis Open",
+    page_icon="EGVOpenLogo.ico",
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
 
 
 st.markdown(
@@ -35,10 +36,34 @@ st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 
 
-st.markdown('<p style="font-size:40px;font-weight: bold;text-align:center;vertical-align:middle;color:blue;margin:0px;padding:0px">EGV Tennis Open - 2025</p>', unsafe_allow_html=True)
+logo, heading, buf = st.columns((3,10,3),vertical_alignment="top")
+logo.image("EGVOpenLogo.png", width=100)
+heading.markdown('<p style="font-size:40px;font-weight: bold;text-align:center;vertical-align:middle;color:blue;margin:0px;padding:0px">EGV Tennis Open - 2025</p>', unsafe_allow_html=True)
 
-left,centre, right = st.columns((1,10,1))
-centre.image("images/EGV_TL.jpeg", width=1000)
+#left,centre, right = st.columns((1,300,1))
+image_path = "images/EGVOpen_Banner.jpeg"
+img_b64 = image_to_base64(image_path)
+
+# HTML for rounded image
+html = f"""
+<div style='
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+'>
+    <img src='data:image/png;base64,{img_b64}' style='
+        width: 2000px;
+        height: auto;
+        border-radius: 20px;
+        border: 2px solid #ccc;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    '/>
+</div>
+"""
+
+#st.markdown(html, unsafe_allow_html=True)
+
+#st.image("images/EGVOpen_Banner.jpeg", width=1000)
 
 @st.cache_data()
 def Initial_Player_List():
@@ -58,7 +83,7 @@ players = Load_Players()
 
 
 
-st.markdown('<BR><BR>',unsafe_allow_html=True)
+#st.markdown('<BR>',unsafe_allow_html=True)
 #st.markdown(get_markdown_col_fields("No of Players",nPlayers),unsafe_allow_html=True)
 #st.markdown(get_markdown_col_fields("Total Rounds to be Played",tot_rounds),unsafe_allow_html=True)
 #st.markdown(get_markdown_col_fields("Total Rounds to be Played",how_many_rounds(nPlayers)),unsafe_allow_html=True)
@@ -77,7 +102,7 @@ completed_matches['Match Date'] = pd.to_datetime(completed_matches['Schedule Dat
 sched_matches['Scheduled Date'] = pd.to_datetime(sched_matches['Schedule Date']).dt.strftime('%B %d')
 
 
-st.markdown('<p style="font-size:20px;font-weight: bold;text-align:center;vertical-align:middle;color:blue;margin:0px;padding:0px">Matches Scheduled for Today:</p>', unsafe_allow_html=True)
+#st.markdown('<p style="font-size:20px;font-weight: bold;text-align:center;vertical-align:middle;color:blue;margin:0px;padding:0px">Matches Scheduled for Today:</p>', unsafe_allow_html=True)
 today = datetime.now().date()
 
 scroll_message = ""
@@ -129,8 +154,9 @@ st.markdown(f"""
 
 
 
-
-
+st.sidebar.markdown("<BR>",unsafe_allow_html=True)
+image_html = rounded_image_html("Sponsor.jpg", 300)
+st.sidebar.markdown(image_html, unsafe_allow_html=True)
 
 
 
