@@ -4,7 +4,6 @@ import random as rm
 import streamlit as st
 from shared_library import *
 import base64
-import google.generativeai as genai
 
 st.set_page_config(
     page_title="EGV Tennis Open",
@@ -115,55 +114,6 @@ def get_markdown_stat_table(data, header='Y', footer='N'):
     return html_script
 
 
-@st.cache_data()
-def get_commentary(stat_df):
-
-    API_KEY = "AIzaSyBjmmNJ76ZUosp68X30d6SGiaWZSJc-ov0"
-    genai.configure(api_key=API_KEY)
-
-    if 'stat_df' in locals() or 'stat_df' in globals():
-        stat_df_string = stat_df.to_markdown(index=False)
-
-
-        prompt = f"""
-        You are a crowd captivating tennis match commentator
-        Give me a commentary on the tennis match as data given and make it under 20 words as well as entertaining and humorous and dont humiliate any players and make it polite tone and prefereably dont add statistics.
-
-        Match Data:
-        {stat_df_string}
-
-        Commentary:
-        """
-
-        try:
-            model = genai.GenerativeModel('gemini-2.5-flash')
-            response = model.generate_content(prompt)
-            return response.text
-        except Exception as e:
-            st.error(f"An error occurred: {e}")
-            st.warning("Please ensure your API key is correct and you have network connectivity.")
-    else:
-        st.warning("`stat_df` is not defined. Please ensure the DataFrame is loaded or created before pressing the button.")
-
-def get_match_comments(match_results, df_stat):
-    for i in match_results.index:
-        match_no = match_results.loc[i,'Match#']
-        match_status = match_results.loc[i,'Status']
-        match_cmnt = match_results.loc[i,'Match Commentary']
-        p1 = match_results.loc[i,'Player1 Name']
-        p2 = match_results.loc[i,'Player2 Name']
-        df_match = df_stat[df_stat['Match#'] == match_no]
-
-
-        if match_status == 'Completed' and match_cmnt != match_cmnt:
-            if len(df_match) > 0:
-                df_stat_1 = get_match_stat(p1, p2, df_match)
-                commentary = get_commentary(df_stat_1)
-                match_results.at[i,'Match Commentary'] = commentary
-                st.write(p1,p2,commentary)
-
-
-    match_results.to_csv("match_results_with_comments.csv",index=False)
 
 
 @st.cache_data()
