@@ -358,7 +358,7 @@ match_commentary = df.loc[match_no,'Match Commentary']
 
 if winner == player1:
     html_text = f"""
-<div style='text-align: center; font-size: 24px;'>
+<div style='text-align: center; color:#2C64F6;font-size: 24px;'>
   <b>Winner: </b>  <b>{player1}</b><BR>
   <b><span style='color: #e74c3c'>{match_score}</span></b>
 </div>
