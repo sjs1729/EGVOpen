@@ -52,7 +52,7 @@ st.sidebar.markdown(image_html, unsafe_allow_html=True)
 
 logo, heading, buf = st.columns((3,10,3),vertical_alignment="top")
 logo.image("EGVOpenLogo.png", width=100)
-heading.markdown('<p style="font-size:44px;font-weight:bold;text-align:center;vertical-align:middle;color:color:#2C64F6;margin:0px;padding:0px">Match Details</p>', unsafe_allow_html=True)
+heading.markdown('<p style="font-size:44px;font-weight:bold;text-align:center;vertical-align:middle;color:#2C64F6;margin:0px;padding:0px">Match Details</p>', unsafe_allow_html=True)
 st.markdown('<BR><BR>', unsafe_allow_html=True)
 
 
@@ -367,7 +367,7 @@ else:
     html_text = f"""
 <div style='text-align: center; font-size: 24px;'>
   <b>Winner: </b>  <b>{player2}</b><BR>
-  <b><span style='color: #e74c3c'>{match_score}</span></b>
+  <b><span style='color:#e74c3c'>{match_score}</span></b>
 </div>
 """
 #right.markdown('<BR>',unsafe_allow_html=True)
