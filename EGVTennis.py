@@ -41,8 +41,8 @@ logo.image("EGVOpenLogo.png", width=100)
 heading.markdown('<p style="font-size:40px;font-weight: bold;text-align:center;vertical-align:middle;color:blue;margin:0px;padding:0px">EGV Tennis Open - 2025</p>', unsafe_allow_html=True)
 
 #left,centre, right = st.columns((1,300,1))
-#image_path = "images/EGVOpen_Banner.jpeg"
-#img_b64 = image_to_base64(image_path)
+image_path = "images/EGVOpen_Banner.jpeg"
+img_b64 = image_to_base64(image_path)
 
 # HTML for rounded image
 html = f"""
