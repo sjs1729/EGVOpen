@@ -7,7 +7,7 @@ from shared_library import *
 
 st.set_page_config(
     page_title="Tennis Open",
-    page_icon="tennis_open.ico",
+    page_icon="EGVOpenLogo.ico",
     layout="wide"
     )
 
@@ -100,6 +100,9 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+st.sidebar.markdown("<BR>",unsafe_allow_html=True)
+image_html = rounded_image_html("Sponsor.jpg", 300)
+st.sidebar.markdown(image_html, unsafe_allow_html=True)
 
 st.cache_data()
 def Load_MatchStats():
@@ -293,7 +296,9 @@ def get_match_stat(player_name,df_match):
 image_dir = "images"
 
 
-st.markdown('<p style="font-size:40px;font-weight: bold;text-align:center;vertical-align:middle;color:blue;margin:0px;padding:0px">Player Stats</p>', unsafe_allow_html=True)
+logo, heading, buf = st.columns((3,10,3),vertical_alignment="top")
+logo.image("EGVOpenLogo.png", width=100)
+heading.markdown('<p style="font-size:44px;font-weight: bold;text-align:center;vertical-align:middle;color:blue;margin:0px;padding:0px">Player Stats</p>', unsafe_allow_html=True)
 st.markdown('<BR><BR>', unsafe_allow_html=True)
 
 
