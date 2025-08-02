@@ -8,7 +8,7 @@ from shared_library import *
 
 st.set_page_config(
     page_title="Tennis Open",
-    page_icon="tennis_open.ico",
+    page_icon="EGVOpenLogo.ico",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -34,7 +34,9 @@ hide_streamlit_style = """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 
-
+st.sidebar.markdown("<BR>",unsafe_allow_html=True)
+image_html = rounded_image_html("Sponsor.jpg", 300)
+st.sidebar.markdown(image_html, unsafe_allow_html=True)
 
 @st.cache_data()
 def convert_df(df):
@@ -42,7 +44,9 @@ def convert_df(df):
     return df.to_csv().encode('utf-8')
 
 
-st.markdown('<p style="font-size:40px;font-weight: bold;text-align:center;vertical-align:middle;color:blue;margin:0px;padding:0px">Match Results</p>', unsafe_allow_html=True)
+logo, heading, buf = st.columns((3,10,3),vertical_alignment="top")
+logo.image("EGVOpenLogo.png", width=100)
+heading.markdown('<p style="font-size:44px;font-weight: bold;text-align:center;vertical-align:middle;color:blue;margin:0px;padding:0px">Match Results</p>', unsafe_allow_html=True)
 st.markdown('<BR>', unsafe_allow_html=True)
 st.markdown('<BR>', unsafe_allow_html=True)
 

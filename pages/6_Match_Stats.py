@@ -3,10 +3,12 @@ import numpy as np
 import random as rm
 import streamlit as st
 from shared_library import *
+import base64
+import google.generativeai as genai
 
 st.set_page_config(
-    page_title="Tennis Open",
-    page_icon="tennis_open.ico",
+    page_title="EGV Tennis Open",
+    page_icon="EGVOpenLogo.ico",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -44,8 +46,14 @@ img_style = """
 
 image_dir = "images/Match_Results/"
 
+st.sidebar.markdown("<BR>",unsafe_allow_html=True)
+image_html = rounded_image_html("Sponsor.jpg", 300)
+st.sidebar.markdown(image_html, unsafe_allow_html=True)
 
-st.markdown('<p style="font-size:40px;font-weight: bold;text-align:center;vertical-align:middle;color:blue;margin:0px;padding:0px">Match Details</p>', unsafe_allow_html=True)
+
+logo, heading, buf = st.columns((3,10,3),vertical_alignment="top")
+logo.image("EGVOpenLogo.png", width=100)
+heading.markdown('<p style="font-size:44px;font-weight:bold;text-align:center;vertical-align:middle;color:color:#2C64F6;margin:0px;padding:0px">Match Details</p>', unsafe_allow_html=True)
 st.markdown('<BR><BR>', unsafe_allow_html=True)
 
 
@@ -59,19 +67,6 @@ initial_player_list = Initial_Player_List()
 
 
 
-def Load_MatchResults():
-    df = pd.read_csv("Match_Results.csv")
-
-    # Convert 'Schedule_Date' to datetime (date only)
-    df['Schedule Date'] = pd.to_datetime(df['Schedule Date'], format='%d-%b-%Y')
-
-    # Convert 'Schedule_Time' to datetime.time
-    df['Schedule Time'] = pd.to_datetime(df['Schedule Time'], format='%I:%M %p').dt.time
-
-    # Optional: combine date and time into a single datetime column
-    df['Scheduled_DateTime'] = df.apply(lambda row: pd.Timestamp.combine(row['Schedule Date'], row['Schedule Time']), axis=1)
-
-    return df
 
 #st.cache_data()
 def Load_MatchStats():
@@ -104,11 +99,11 @@ def get_markdown_stat_table(data, header='Y', footer='N'):
     html_script = html_script + "</tr></thead><tbody>"
     for j in data.index:
         if ncols < 5:
-            html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:12px;padding:1px;';>"
+            html_script = html_script + "<tr style='border:none;font-family:Courier;font-weight:550;color:#2C64F6; font-size:13px;padding:1px;';>"
         elif ncols < 8:
-            html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:11px;padding:1px;';>"
+            html_script = html_script + "<tr style='border:none;font-family:Courier; font-weight:600;color:#2C64F6; font-size:11px;padding:1px;';>"
         else:
-            html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:9px;padding:1px;';>"
+            html_script = html_script + "<tr style='border:none;font-family:Courier; font-weight:bold;color:#2C64F6; font-size:9px;padding:1px;';>"
 
         a = data.loc[j]
         for k in cols:
@@ -119,6 +114,56 @@ def get_markdown_stat_table(data, header='Y', footer='N'):
 
     return html_script
 
+
+@st.cache_data()
+def get_commentary(stat_df):
+
+    API_KEY = "AIzaSyBjmmNJ76ZUosp68X30d6SGiaWZSJc-ov0"
+    genai.configure(api_key=API_KEY)
+
+    if 'stat_df' in locals() or 'stat_df' in globals():
+        stat_df_string = stat_df.to_markdown(index=False)
+
+
+        prompt = f"""
+        You are a crowd captivating tennis match commentator
+        Give me a commentary on the tennis match as data given and make it under 20 words as well as entertaining and humorous and dont humiliate any players and make it polite tone and prefereably dont add statistics.
+
+        Match Data:
+        {stat_df_string}
+
+        Commentary:
+        """
+
+        try:
+            model = genai.GenerativeModel('gemini-2.5-flash')
+            response = model.generate_content(prompt)
+            return response.text
+        except Exception as e:
+            st.error(f"An error occurred: {e}")
+            st.warning("Please ensure your API key is correct and you have network connectivity.")
+    else:
+        st.warning("`stat_df` is not defined. Please ensure the DataFrame is loaded or created before pressing the button.")
+
+def get_match_comments(match_results, df_stat):
+    for i in match_results.index:
+        match_no = match_results.loc[i,'Match#']
+        match_status = match_results.loc[i,'Status']
+        match_cmnt = match_results.loc[i,'Match Commentary']
+        p1 = match_results.loc[i,'Player1 Name']
+        p2 = match_results.loc[i,'Player2 Name']
+        df_match = df_stat[df_stat['Match#'] == match_no]
+
+
+        if match_status == 'Completed' and match_cmnt != match_cmnt:
+            if len(df_match) > 0:
+                df_stat_1 = get_match_stat(p1, p2, df_match)
+                commentary = get_commentary(df_stat_1)
+                match_results.at[i,'Match Commentary'] = commentary
+                st.write(p1,p2,commentary)
+
+
+    match_results.to_csv("match_results_with_comments.csv",index=False)
 
 
 @st.cache_data()
