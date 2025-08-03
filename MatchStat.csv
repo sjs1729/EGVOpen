@@ -342,6 +342,18 @@ Round#,Match#,Game#,Server,Receiver,First Serves,First Serve Wins,First Serve Lo
 3,56,4,Sanjib Mahanta,Mohit Kumar,8,1,1,6,6,2,4,0,0,3,5
 3,56,5,Mohit Kumar,Sanjib Mahanta,6,4,2,0,0,0,0,0,0,4,2
 3,56,6,Sanjib Mahanta,Mohit Kumar,4,0,3,1,1,0,1,0,0,0,4
+3,62,1,Jit Narayan De,Sumit Raychaudhuri,12,5,4,3,3,2,1,1,1,7,5
+3,62,2,Sumit Raychaudhuri,Jit Narayan De,8,2,2,4,4,1,3,0,0,3,5
+3,62,3,Jit Narayan De,Sumit Raychaudhuri,6,2,2,2,2,0,2,0,0,2,4
+3,62,4,Sumit Raychaudhuri,Jit Narayan De,8,2,2,4,4,1,3,0,0,3,5
+3,62,5,Jit Narayan De,Sumit Raychaudhuri,8,3,3,2,2,0,2,0,0,3,5
+3,62,6,Sumit Raychaudhuri,Jit Narayan De,5,1,1,3,3,0,3,0,0,1,4
+3,62,7,Jit Narayan De,Sumit Raychaudhuri,6,1,2,3,3,1,2,0,0,2,4
+3,62,8,Sumit Raychaudhuri,Jit Narayan De,6,1,0,5,5,1,4,0,0,2,4
+3,62,9,Jit Narayan De,Sumit Raychaudhuri,6,2,3,1,1,0,1,0,0,2,4
+3,62,10,Sumit Raychaudhuri,Jit Narayan De,14,4,1,9,9,4,5,0,1,8,6
+3,62,11,Jit Narayan De,Sumit Raychaudhuri,6,2,2,2,2,2,0,0,0,4,2
+3,62,12,Sumit Raychaudhuri,Jit Narayan De,4,0,2,2,2,0,2,0,0,0,4
 3,59,1,Subhadip Chakraborty,Ishmeet,5,3,0,2,2,1,1,1,0,4,1
 3,59,2,Ishmeet,Subhadip Chakraborty,6,1,1,4,4,3,1,1,0,4,2
 3,59,3,Subhadip Chakraborty,Ishmeet,6,1,2,3,3,1,2,1,0,2,4
@@ -480,5 +492,93 @@ Round#,Match#,Game#,Server,Receiver,First Serves,First Serve Wins,First Serve Lo
 4,85,5,Arka Sinha,Prakash Panda,4,0,1,3,3,0,3,2,0,0,4
 4,85,6,Prakash Panda,Arka Sinha,5,1,0,4,4,3,1,0,0,4,1
 4,85,7,Arka Sinha,Prakash Panda,6,2,1,3,3,0,3,0,0,2,4
-
 4,85,8,Prakash Panda,Arka Sinha,8,2,0,6,6,3,3,1,0,5,3
+4,68,1,Jit Narayan De,Vivek Karmakar,8,5,1,2,2,0,2,0,0,5,3
+4,68,2,Vivek Karmakar,Jit Narayan De,8,2,2,4,4,3,1,0,0,5,3
+4,68,3,Jit Narayan De,Vivek Karmakar,8,2,1,5,5,3,2,0,0,5,3
+4,68,4,Vivek Karmakar,Jit Narayan De,5,1,2,2,2,0,2,0,0,1,4
+4,68,5,Jit Narayan De,Vivek Karmakar,4,3,0,1,1,1,0,0,0,4,0
+4,68,6,Vivek Karmakar,Jit Narayan De,6,1,1,4,4,1,3,0,0,2,4
+4,68,7,Jit Narayan De,Vivek Karmakar,4,4,0,0,0,0,0,0,0,4,0
+4,73,1,Ishmeet,Vikrant Chopra,6,2,0,4,4,2,2,0,0,4,2
+4,73,2,Vikrant Chopra,Ishmeet,6,4,0,2,2,0,2,0,0,4,2
+4,73,3,Ishmeet,Vikrant Chopra,6,2,1,3,3,2,1,0,0,4,2
+4,73,4,Vikrant Chopra,Ishmeet,6,0,0,6,6,4,2,2,0,4,2
+4,73,5,Ishmeet,Vikrant Chopra,5,1,0,4,4,3,1,0,0,4,1
+4,73,6,Vikrant Chopra,Ishmeet,6,2,1,3,3,2,1,0,0,4,2
+4,73,7,Ishmeet,Vikrant Chopra,6,1,0,5,5,1,4,3,0,2,4
+4,73,8,Vikrant Chopra,Ishmeet,4,0,3,1,1,0,1,0,0,0,4
+4,73,9,Ishmeet,Vikrant Chopra,5,0,2,3,3,1,2,0,0,1,4
+4,73,10,Vikrant Chopra,Ishmeet,4,0,3,1,1,0,1,1,0,0,4
+4,73,11,Ishmeet,Vikrant Chopra,4,0,1,3,3,0,3,0,0,0,4
+4,73,12,Vikrant Chopra,Ishmeet,4,4,0,0,0,0,0,0,0,4,0
+3,66,1,Sanjoy Saha,Vineet Gupta,6,2,1,3,3,2,1,0,0,4,2
+3,66,2,Vineet Gupta,Sanjoy Saha,6,2,1,3,3,2,1,1,0,4,2
+3,66,3,Sanjoy Saha,Vineet Gupta,6,4,2,0,0,0,0,0,0,4,2
+3,66,4,Vineet Gupta,Sanjoy Saha,8,4,1,3,3,1,2,1,0,5,3
+3,66,5,Sanjoy Saha,Vineet Gupta,8,5,2,1,1,0,1,0,0,5,3
+3,66,6,Vineet Gupta,Sanjoy Saha,6,2,0,4,4,2,2,1,0,4,2
+3,66,7,Sanjoy Saha,Vineet Gupta,10,6,4,0,0,0,0,0,0,6,4
+3,66,8,Vineet Gupta,Sanjoy Saha,6,2,1,3,3,2,1,1,0,4,2
+3,66,9,Sanjoy Saha,Vineet Gupta,5,1,3,1,1,0,1,0,0,1,4
+3,66,10,Vineet Gupta,Sanjoy Saha,6,2,1,3,3,0,3,1,1,2,4
+3,66,11,Sanjoy Saha,Vineet Gupta,5,1,2,2,2,0,2,0,0,1,4
+3,66,12,Vineet Gupta,Sanjoy Saha,5,3,0,2,2,1,1,0,0,4,1
+2,40,1,Sisir Biswas,Saikat Maity,5,1,3,1,1,0,1,0,0,1,4
+2,40,2,Saikat Maity,Sisir Biswas,5,3,0,2,2,1,1,0,0,4,1
+2,40,3,Sisir Biswas,Saikat Maity,6,1,2,3,3,1,2,0,0,2,4
+3,52,1,Saikat Maity,Shekhar Das,6,1,0,5,5,1,4,0,0,2,4
+3,52,2,Shekhar Das,Saikat Maity,8,5,2,1,1,0,1,0,0,5,3
+3,52,3,Saikat Maity,Shekhar Das,4,0,3,1,1,0,1,0,0,0,4
+3,52,4,Shekhar Das,Saikat Maity,6,3,1,2,2,1,1,0,0,4,2
+3,52,5,Saikat Maity,Shekhar Das,5,0,2,3,3,1,2,0,0,1,4
+3,52,6,Shekhar Das,Saikat Maity,4,4,0,0,0,0,0,0,0,4,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,0,0,,0,,,0,0
+,,,,,,,,,,,0,,,0,0
+,,,,,,,,,,,0,,,0,0
+,,,,,,,,,,,0,,,0,0
+,,,,,,,,,,,0,,,0,0
+,,,,,,,,,,,0,,,0,0
+,,,,,,,,,,,0,,,0,0
+,,,,,,,,,,,0,,,0,0
+,,,,,,,,,,,0,,,0,0
+,,,,,,,,,,,0,,,,
+,,,,,,,,,,,0,,,,
+,,,,,,,,,,,0,,,,
+,,,,,,,,,,,0,,,,
+,,,,,,,,,,,0,,,,
+,,,,,,,,,,,0,,,,
+,,,,,,,,,,,0,,,,
+,,,,,,,,,,,0,,,,
+,,,,,,,,,,,0,,,,
+,,,,,,,,,,,0,,,,
+,,,,,,,,,,,0,,,,
+,,,,,,,,,,,0,,,,
+,,,,,,,,,,,0,,,,
