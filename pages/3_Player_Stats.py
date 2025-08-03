@@ -6,7 +6,7 @@ from shared_library import *
 
 
 st.set_page_config(
-    page_title="Tennis Open",
+    page_title="EGV Tennis Open",
     page_icon="EGVOpenLogo.ico",
     layout="wide"
     )
@@ -22,15 +22,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
-# Hide Streamlit menu and footer
-hide_streamlit_style = """
-        <style>
-        .stToolbarActions {display: none !important;}
-        </style>
-        """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
 
 # Styles we'll apply to images
 img_style = """
@@ -104,6 +95,7 @@ st.sidebar.markdown("<BR>",unsafe_allow_html=True)
 image_html = rounded_image_html("Sponsor.jpg", 300)
 st.sidebar.markdown(image_html, unsafe_allow_html=True)
 
+
 st.cache_data()
 def Load_MatchStats():
     df = pd.read_csv("MatchStat.csv")
@@ -127,17 +119,17 @@ def get_html_table(data, players):
     for j in data.index:
 
 
-        html_script = html_script + "<tr style='border:none;font-family:Courier; font-weight:bold;color:#0866FF; font-size:14px;padding:1px;';>"
+        html_script = html_script + "<tr style='border:none;font-family:Courier; color:#0866FF;font-weight:bold;font-size:14px;padding:1px;';>"
         a = data.loc[j]
         for k in cols:
 
             if k == 'Match#':
-                match_url_link = "https://egvtennisopen.streamlit.app/Match_Stats?mid={}".format(a[k])
-                html_script += "<td style='padding:2px; text-align:center' rowspan='1'><a href={} style='text-decoration:underline; font-weight:bold;color:#0866FF;'>{}</a></td>".format(match_url_link,a[k])
+                match_url_link = "http://localhost:8501/Match_Stats?mid={}".format(a[k])
+                html_script += "<td style='padding:2px; text-align:center' rowspan='1'><a href={} style='text-decoration:underline;font-weight:bold;color:#0866FF;'>{}</a></td>".format(match_url_link,a[k])
             elif k == 'Against':
                 player_id = get_player_id(a[k],players)
-                player_url_link = "https://egvtennisopen.streamlit.app/Player_Stats?id={}".format(player_id)
-                html_script += "<td style='padding:2px; text-align:center' rowspan='1'><a href={} style='text-decoration:underline; font-weight:bold;color:#0866FF;'>{}</a></td>".format(player_url_link,a[k])
+                player_url_link = "http://localhost:8501/Player_Stats?id={}".format(player_id)
+                html_script += "<td style='padding:2px; text-align:center' rowspan='1'><a href={} style='text-decoration:underline;font-weight:bold;color:#0866FF;'>{}</a></td>".format(player_url_link,a[k])
             else:
                 html_script = html_script + "<td style='padding:2px;text-align:center' rowspan='1'>{}</td>".format(a[k])
 
@@ -146,23 +138,63 @@ def get_html_table(data, players):
     return html_script
 
 @st.cache_data()
-def get_match_stat(player_name,df_match):
+def get_markdown_stat_table(df_all_match_stats):
+    html = """
+    <style>
+    .stat-container {
+        font-size: 15px;
+        line-height: 1.6;
+        font-family: 'Segoe UI', sans-serif;
+        color: #2C64F6;
+    }
+    .stat-label {
+        font-weight: 550;
+        display: inline-block;
+        width: 260px;
+        color:#2C64F6;
+    }
+    .stat-value {
+        font-weight: 570    ;
+        width: 100px;
+        text-align:center;
+        color:#FF6B30;
+    }
+
+    </style>
+
+    <div class="stat-container">
+    <BR>
+    """
+
+    for _, row in df_all_match_stats.iterrows():
+        stat = str(row[0]).strip()
+        value = str(row[1]).strip()
+        html += f'<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stat-label">{stat}</span> <span class="stat-value">{value}</span></div>'
+
+    html += "</div>"
+    return html
 
 
-    player_stat = {
+
+@st.cache_data()
+def get_match_stat(player_name,df_match, stat_arr):
+
+    player_stat = { 'Current Rank':stat_arr[0],
+                    'Matches Played':stat_arr[1],
+                    'Matches Won':stat_arr[2],
                     'Games Won':0,
                     'Games Lost':0,
                     'Aces':0,
                     'Double Faults':0,
                     'Points Won':0,
                     'Points Lost':0,
-                    'Points Won %':0,
+                    'Points Won (Win%) Lost':0,
                     'Points Won Serving':0,
                     'Points Lost Serving':0,
                     'Points Won Receiving':0,
                     'Points Lost Receiving':0,
-                    'Points Won Serving %':0,
-                    'Points Won Receiving %':0,
+                    'Points Won (Win%) Lost - Serving':0,
+                    'Points Won (Win%) Lost - Receiving':0,
                     'First Serves':0,
                     'First Serve Wins':0,
                     'First Serve Loss':0,
@@ -233,16 +265,16 @@ def get_match_stat(player_name,df_match):
     player_stat['Points Lost'] = player_stat['Points Lost Serving'] + player_stat['Points Lost Receiving']
     #st.write(player_stat['Points Won'],player_stat['Points Lost'])
     temp_value = round(100 * player_stat['Points Won']/ (player_stat['Points Won'] + player_stat['Points Lost']),2)
-    player_stat['Points Won %'] = f"{player_stat['Points Won']} ({temp_value}%)"
+    player_stat['Points Won (Win%) Lost'] = f"{player_stat['Points Won']} ({temp_value}%) {player_stat['Points Lost']}"
 
     #st.write(player_stat['Points Won %'])
 
-    temp_value = round(100 * player_stat['Points Won Serving']/ (player_stat['Points Won Serving'] + player_stat['Points Lost Receiving']),2)
-    player_stat['Points Won Serving %'] = f"{player_stat['Points Won Serving']} ({temp_value}%)"
+    temp_value = round(100 * player_stat['Points Won Serving']/ (player_stat['Points Won Serving'] + player_stat['Points Lost Serving']),2)
+    player_stat['Points Won (Win%) Lost - Serving'] = f"{player_stat['Points Won Serving']} ({temp_value}%) {player_stat['Points Lost Serving']}"
 
 
-    temp_value = round(100 * player_stat['Points Won Receiving']/ (player_stat['Points Won Receiving'] + player_stat['Points Lost Serving']),2)
-    player_stat['Points Won Receiving %'] = f"{player_stat['Points Won Receiving']} ({temp_value}%)"
+    temp_value = round(100 * player_stat['Points Won Receiving']/ (player_stat['Points Won Receiving'] + player_stat['Points Lost Receiving']),2)
+    player_stat['Points Won (Win%) Lost - Receiving'] = f"{player_stat['Points Won Receiving']} ({temp_value}%) {player_stat['Points Lost Receiving']}"
 
 
     temp_value = round(100*((player_stat['First Serves'] - player_stat['First Serve Faults'])/player_stat['First Serves']),2)
@@ -273,7 +305,9 @@ def get_match_stat(player_name,df_match):
 
     stat_rec = []
 
-    display_stats = ['Games Won','Games Lost','Points Won %','Points Won Serving %', 'Points Won Receiving %','Aces','Double Faults','First Serve %','First Serve Win %','Second Serve %','Second Serve Win %']
+    display_stats = ['Current Rank', 'Matches Played', 'Matches Won','Games Won','Games Lost','Points Won (Win%) Lost',
+                     'Points Won (Win%) Lost - Serving', 'Points Won (Win%) Lost - Receiving','Aces','Double Faults',
+                     'First Serve %','First Serve Win %','Second Serve %','Second Serve Win %']
 
     for stat in player_stat:
 
@@ -310,7 +344,6 @@ if param_id:
 else:
     def_id = 0
 
-#st.write(players)
 
 
 p_standing = player_standings()
@@ -330,12 +363,12 @@ p_id = int(player_sel.split("-")[0])
 
 right.markdown('<BR><BR>', unsafe_allow_html=True)
 show_image = right.empty()
-show_match_stat = left.empty()
+show_player_stat = left.empty()
 
 image_path = f"{image_dir}/{p_id}.png"
 
 try:
-    show_image.image(image_path, width=250, output_format="PNG")
+    show_image.image(image_path, width=300, output_format="PNG")
 except:
     show_image.image(default_image_path, width=300, output_format="PNG")
 
@@ -343,6 +376,11 @@ except:
 
 
 current_position = p_standing.loc[p_id,'Rank']
+matches_played = p_standing.loc[p_id,'Matches Played']
+matches_won = p_standing.loc[p_id,'Wins#']
+
+stat_arr = [current_position, matches_played,matches_won]
+
 
 df = Load_MatchResults()
 df=df[df['Status'] == 'Completed']
@@ -353,9 +391,13 @@ match_list = [int(i) for i in matches_played['Match#'].unique()]
 df_stat = Load_MatchStats()
 df_match_stat = df_stat[df_stat['Match#'].isin(match_list)]
 
-df_all_match_stats = get_match_stat(players[p_id-1].name,df_match_stat)
+df_all_match_stats = get_match_stat(players[p_id-1].name,df_match_stat,stat_arr)
 
-show_match_stat.markdown(get_markdown_table(df_all_match_stats), unsafe_allow_html=True)
+
+
+
+
+show_player_stat.markdown(get_markdown_stat_table(df_all_match_stats), unsafe_allow_html=True)
 
 
 #st.write(df_all_match_stats)
@@ -399,9 +441,10 @@ for idx , row in matches_played.iterrows():
 match_history = pd.DataFrame(match_hist_rec, columns=['Result','Against', 'Score','Round', 'Match#'])
 
 if len(match_history) > 0:
-    st.success(f"{players[p_id-1].name} - Match History")
     html_text = get_html_table(match_history, players)
-    st.markdown(html_text, unsafe_allow_html=True)
+    st.write("------------")
+    if st.toggle("Match History", value=True):
+        st.markdown(html_text, unsafe_allow_html=True)
 
 #player_rank = player_standings()
 #html_script = get_markdown_table(player_rank)
