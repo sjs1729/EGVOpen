@@ -351,7 +351,7 @@ p_standing = player_standings()
 default_image_path = f"{image_dir}/default.png"
 
 p_list = [f"{x.id}-{x.name}" for x in players]
-left,buf, right = st.columns((6,1,5))
+left,buf, right = st.columns((8,1,5))
 
 
 
@@ -361,14 +361,14 @@ left.write("  ")
 p_id = int(player_sel.split("-")[0])
 #p_last_name = player_sel.split("-")[1].split()[1]
 
-right.markdown('<BR><BR>', unsafe_allow_html=True)
+right.markdown('<BR>', unsafe_allow_html=True)
 show_image = right.empty()
 show_player_stat = left.empty()
 
 image_path = f"{image_dir}/{p_id}.png"
 
 try:
-    show_image.image(image_path, width=300, output_format="PNG")
+    show_image.image(image_path, width=250, output_format="PNG")
 except:
     show_image.image(default_image_path, width=300, output_format="PNG")
 
