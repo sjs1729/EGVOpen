@@ -317,7 +317,7 @@ image_dir = "images"
 
 logo, heading, buf = st.columns((3,10,3),vertical_alignment="top")
 logo.image("EGVOpenLogo.png", width=100)
-heading.markdown('<p style="font-size:44px;font-weight: bold;text-align:center;vertical-align:middle;color:blue;margin:0px;padding:0px">Player Stats</p>', unsafe_allow_html=True)
+heading.markdown('<p style="font-size:44px;font-weight: bold;text-align:center;vertical-align:middle;color:blue;margin:0px;padding:0px">Player Profile</p>', unsafe_allow_html=True)
 st.markdown('<BR><BR>', unsafe_allow_html=True)
 
 
@@ -336,26 +336,37 @@ p_standing = player_standings()
 default_image_path = f"{image_dir}/default.png"
 
 p_list = [f"{x.id}-{x.name}" for x in players]
-left,buf, right = st.columns((6,1,5))
+col1,buf, col2 = st.columns((5,1,6))
 
 
 
-player_sel = left.selectbox("Select Player",p_list,def_id,label_visibility='collapsed')
-left.write("  ")
+player_sel = col1.selectbox("Select Player",p_list,def_id,label_visibility='collapsed')
+col1.write("  ")
 #left.write(player_sel)
 p_id = int(player_sel.split("-")[0])
 #p_last_name = player_sel.split("-")[1].split()[1]
 
-right.markdown('<BR><BR>', unsafe_allow_html=True)
-show_image = right.empty()
-show_player_stat = left.empty()
+buf1,left, right, buf2 = st.columns((1,5,6,1))
+
+right.markdown(
+    """
+    <p style="font-size: 28px; font-weight: bold; text-align: center; color:#EC6B30;
+              text-decoration: underline; margin: 0; padding: 4px 0;">
+        Tournament Stats
+    </p>
+    """, unsafe_allow_html=True
+)
+left.markdown('<BR><BR><BR>', unsafe_allow_html=True)
+
+show_image = left.empty()
+show_player_stat = right.empty()
 
 image_path = f"{image_dir}/{p_id}.png"
 
 try:
-    show_image.image(image_path, width=250, output_format="PNG")
+    show_image.image(image_path, width=300, output_format="PNG")
 except:
-    show_image.image(default_image_path, width=300, output_format="PNG")
+    show_image.image(default_image_path, width=True, output_format="PNG")
 
 
 
