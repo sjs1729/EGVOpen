@@ -356,7 +356,7 @@ right.markdown(
     </p>
     """, unsafe_allow_html=True
 )
-left.markdown('<BR><BR><BR>', unsafe_allow_html=True)
+left.markdown('<BR>', unsafe_allow_html=True)
 
 show_image = left.empty()
 show_player_stat = right.empty()
