@@ -23,7 +23,7 @@ Sr#,Name,Age_Group,Tower,Age Group
 22,Ajit Bikram,40+,T4,45+
 23,Mohit Kumar,40+,T4,18-45
 24,Ishmeet,Below 18,T10,Less than 18
-25,Amik Parua,40+,X,45+
+25,Amik Parua,40+,T1,45+
 26,Sudipta Chattoraj,40+,T4,18-45
 27,Sagir Gogoi,40+,T12,18-45
 28,Sisir Biswas,,T13,45+
@@ -34,10 +34,10 @@ Sr#,Name,Age_Group,Tower,Age Group
 33,Atulya Priyadarshi,Below 18,T12,Less than 18
 34,Subhadip Chakraborty,40+,T11,18-45
 35,Agniswar Chatterjee,40+,T16,45+
-36,Avijit Paul,,X,18-45
+36,Avijit Paul,,T15,18-45
 37,Vivaan Chandra,Below 18,T12,Less than 18
 38,Arka Sinha,,T4,18-45
-39,Neelabh Neeraj,,X,18-45
+39,Neelabh Neeraj,,T14,18-45
 40,Vipul Gupta,,T4,18-45
 41,Abhishek Kumar,,T13,18-45
 42,Dr. Niraj Priyadarshi,40+,T12,45+
