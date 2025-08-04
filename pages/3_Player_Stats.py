@@ -138,39 +138,25 @@ def get_html_table(data, players):
     return html_script
 
 @st.cache_data()
-def get_markdown_stat_table(df_all_match_stats):
+def get_markdown_stat_table(df):
+
     html = """
-    <style>
-    .stat-container {
-        font-size: 15px;
-        line-height: 1.6;
-        font-family: 'Segoe UI', sans-serif;
-        color: #2C64F6;
-    }
-    .stat-label {
-        font-weight: 550;
-        width: 260px;
-        color:#2C64F6;
-    }
-    .stat-value {
-        font-weight: 570    ;
-        width: 100px;
-        text-align:center;
-        color:#FF6B30;
-    }
+                <style>
+                table, tr, td {
+                        border: none !important;
+                        border-collapse: collapse;
+                    }
+                </style>
+            """
 
-    </style>
-
-    <div class="stat-container">
-    <BR>
-    """
-
-    for _, row in df_all_match_stats.iterrows():
+    html += "<div style='font-size: 16px;font-family:sans-serif;color: #2C64F6;width: 100%; max-width: 800px;'><table style='width: 100%;'><tbody>"
+    for _, row in df.iterrows():
         stat = str(row[0]).strip()
         value = str(row[1]).strip()
-        html += f'<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stat-label">{stat}:</span> &nbsp;<span class="stat-value">{value}</span></div>'
-
-    html += "</div>"
+        html = html +  f"<tr style='backgroundColor:#ffffff'><td style='padding: 4px 8px; text-align: left; font-weight: 600;border:3 px solid #2C64F6;'>{stat}</td>"
+        html = html +  f"<td style='padding: 4px 8px; text-align: center; font-weight: 400; font-family: sans-serif, monospace;border:3 px solid #FF64F6;'>{value} </td></tr>"
+    html += "</tbody></table></div>"
+    #st.write(html)
     return html
 
 
@@ -393,6 +379,7 @@ df_match_stat = df_stat[df_stat['Match#'].isin(match_list)]
 df_all_match_stats = get_match_stat(players[p_id-1].name,df_match_stat,stat_arr)
 
 
+#st.write(get_markdown_stat_table(df_all_match_stats))
 
 
 
