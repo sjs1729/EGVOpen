@@ -70,7 +70,7 @@ Match#,Round#,Player1#,Player1 Name,Player2#,Player2 Name,Schedule Date,Schedule
 69,4,6.0,Sneh Mitra,3.0,Shubham Hazra,1-Aug-2025,6:30:00 PM,,,,TBD,2025-08-01 18:30:00,
 70,4,2.0,Sumit Raychaudhuri,,Winner of Match# 54,2-Aug-2025,6:30:00 PM,,,,TBD,2025-08-02 18:30:00,
 71,4,17.0,Satyabrata Mishra,22.0,Ajit Bikram,5-Aug-2025,6:30:00 PM,,,,Scheduled,2025-08-03 18:30:00,
-72,4,12.0,Akhilesh Verma,21.0,Anuj Pandit,5-Aug-2025,7:30:00 PM,6-2,12,Akhilesh Verma,Scheduled,2025-08-02 18:30:00,
+72,4,12.0,Akhilesh Verma,21.0,Anuj Pandit,5-Aug-2025,7:30:00 PM,6-2,12,Akhilesh Verma,Completed,2025-08-02 18:30:00,
 73,4,7.0,Vikrant Chopra,24.0,Ishmeet,2-Aug-2025,8:30:00 PM,7-5,7.0,Vikrant Chopra,Completed,2025-08-02 18:30:00,
 74,4,23.0,Mohit Kumar,32.0,Shekhar Das,12-Aug-2025,6:30:00 PM,,,,Scheduled,2025-08-02 18:30:00,
 75,4,8.0,Arin Neogi,19.0,Sanjoy Saha,9-Aug-2025,8:30:00 PM,,,,Scheduled,2025-08-02 18:30:00,
@@ -86,4 +86,4 @@ Match#,Round#,Player1#,Player1 Name,Player2#,Player2 Name,Schedule Date,Schedule
 85,4,15.0,Prakash Panda,38.0,Arka Sinha,27-Jul-2025,5:30:00 PM,6-2,15.0,Prakash Panda,Completed,2025-07-27 17:30:00,"Prakash's performance was a masterclass! Arka served up an ace, but couldn't halt Panda's unstoppable momentum!"
 86,4,26.0,Sudipta Chattoraj,,Loser of Match# 46,9-Aug-2025,6:30:00 PM,,,,TBD,2025-08-02 18:30:00,
 87,4,,Loser of Match# 47,,Wild Card - Somnath Das / Kartavya,3-Aug-2025,6:30:00 PM,,,,TBD,2025-08-03 18:30:00,
-88,4,35.0,Agniswar Chatterjee,40.0,Vipul Gupta,4-Aug-2025,7:30:00 PM,6-3,35,Agniswar Chatterjee,Scheduled,2025-08-02 18:30:00,
+88,4,35.0,Agniswar Chatterjee,40.0,Vipul Gupta,4-Aug-2025,7:30:00 PM,6-3,35,Agniswar Chatterjee,Completed,2025-08-02 18:30:00,
