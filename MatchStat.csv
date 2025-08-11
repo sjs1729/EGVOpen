@@ -385,18 +385,6 @@ Round#,Match#,Game#,Server,Receiver,First Serves,First Serve Wins,First Serve Lo
 2,33,6,Rishav Kacholia,CKP,5,3,0,2,2,1,1,0,0,4,1
 2,33,7,CKP,Rishav Kacholia,4,1,0,3,3,3,0,0,0,4,0
 2,33,8,Rishav Kacholia,CKP,10,3,3,4,4,1,3,0,0,4,6
-3,62,1,Jit Narayan De,Sumit Raychaudhuri,12,5,4,3,3,2,1,1,0,7,5
-3,62,2,Sumit Raychaudhuri,Jit Narayan De,8,2,1,5,5,1,4,0,0,3,5
-3,62,3,Jit Narayan De,Sumit Raychaudhuri,6,2,2,2,2,0,2,0,0,2,4
-3,62,4,Sumit Raychaudhuri,Jit Narayan De,8,2,2,4,4,1,3,0,0,3,5
-3,62,5,Jit Narayan De,Sumit Raychaudhuri,8,3,3,2,2,0,2,0,0,3,5
-3,62,6,Sumit Raychaudhuri,Jit Narayan De,5,1,1,3,3,0,3,0,0,1,4
-3,62,7,Jit Narayan De,Sumit Raychaudhuri,6,1,2,3,3,1,2,0,0,2,4
-3,62,8,Sumit Raychaudhuri,Jit Narayan De,6,1,0,5,5,1,4,0,0,2,4
-3,62,9,Jit Narayan De,Sumit Raychaudhuri,6,2,3,1,1,0,1,0,0,2,4
-3,62,10,Sumit Raychaudhuri,Jit Narayan De,14,4,1,9,9,4,5,0,1,8,6
-3,62,11,Jit Narayan De,Sumit Raychaudhuri,6,2,2,2,2,2,0,0,0,4,2
-3,62,12,Sumit Raychaudhuri,Jit Narayan De,4,0,2,2,2,0,2,0,0,0,4
 3,64,1,Vikrant Chopra,Sneh Mitra,6,2,2,2,2,0,2,2,0,2,4
 3,64,2,Sneh Mitra,Vikrant Chopra,6,4,2,0,0,0,0,0,0,4,2
 3,64,3,Vikrant Chopra,Sneh Mitra,8,1,4,3,3,2,1,0,0,3,5
@@ -565,3 +553,86 @@ Round#,Match#,Game#,Server,Receiver,First Serves,First Serve Wins,First Serve Lo
 4,88,7,Vipul Gupta,Agniswar Chatterjee,10,3,2,5,5,3,2,2,0,6,4
 4,88,8,Agniswar Chatterjee,Vipul Gupta,5,2,1,2,2,2,0,0,0,4,1
 4,88,9,Vipul Gupta,Agniswar Chatterjee,16,4,4,8,8,3,5,0,0,7,9
+4,69,1,Shubham Hazra,Sneh Mitra,6,2,3,1,1,0,1,1,0,2,4
+4,69,2,Sneh Mitra,Shubham Hazra,5,1,4,0,0,0,0,0,0,1,4
+4,69,3,Shubham Hazra,Sneh Mitra,4,0,0,4,4,0,4,2,0,0,4
+4,69,4,Sneh Mitra,Shubham Hazra,4,0,1,3,3,0,3,1,0,0,4
+4,69,5,Shubham Hazra,Sneh Mitra,10,4,2,4,4,2,2,1,0,6,4
+4,69,6,Sneh Mitra,Shubham Hazra,6,1,3,2,2,1,1,0,0,2,4
+4,69,7,Shubham Hazra,Sneh Mitra,10,4,1,5,5,2,3,2,0,6,4
+4,69,8,Sneh Mitra,Shubham Hazra,8,2,1,5,5,3,2,1,0,5,3
+4,69,9,Shubham Hazra,Sneh Mitra,5,3,0,2,2,1,1,1,0,4,1
+3,46,1,Samarth Gupta,Sisir Biswas,4,3,0,1,1,1,0,0,0,4,0
+3,46,2,Sisir Biswas,Samarth Gupta,4,0,1,3,3,0,3,3,0,0,4
+3,46,3,Samarth Gupta,Sisir Biswas,5,1,0,4,4,3,1,1,0,4,1
+3,46,4,Sisir Biswas,Samarth Gupta,4,0,0,4,4,0,4,3,0,0,4
+3,46,5,Samarth Gupta,Sisir Biswas,6,1,4,1,1,1,0,0,0,2,4
+3,46,6,Sisir Biswas,Samarth Gupta,4,0,0,4,4,0,4,3,0,0,4
+3,46,7,Samarth Gupta,Sisir Biswas,14,5,2,7,7,3,4,3,0,8,6
+4,86,1,Sisir Biswas,Sudipta Chattoraj,6,0,0,6,6,2,4,4,0,2,4
+4,86,2,Sudipta Chattoraj,Sisir Biswas,4,0,0,4,4,4,0,0,0,4,0
+4,86,3,Sisir Biswas,Sudipta Chattoraj,8,2,0,6,6,1,5,2,0,3,5
+4,86,4,Sudipta Chattoraj,Sisir Biswas,4,4,0,0,0,0,0,0,1,4,0
+4,86,5,Sisir Biswas,Sudipta Chattoraj,4,0,1,3,3,0,3,0,0,0,4
+4,86,6,Sudipta Chattoraj,Sisir Biswas,4,3,0,1,1,1,0,0,2,4,0
+3,54,1,Kamal Agarwal,Rishav Kacholia,6,4,0,2,2,0,2,1,1,4,2
+3,54,2,Rishav Kacholia,Kamal Agarwal,6,2,1,3,3,2,1,0,0,4,2
+3,54,3,Kamal Agarwal,Rishav Kacholia,8,2,1,5,5,3,2,0,0,5,3
+3,54,4,Rishav Kacholia,Kamal Agarwal,6,4,1,1,1,0,1,0,0,4,2
+3,54,5,Kamal Agarwal,Rishav Kacholia,5,1,1,3,3,3,0,0,0,4,1
+3,54,6,Rishav Kacholia,Kamal Agarwal,5,0,3,2,2,1,1,0,0,1,4
+3,54,7,Kamal Agarwal,Rishav Kacholia,6,1,1,4,4,3,1,0,1,4,2
+3,54,8,Rishav Kacholia,Kamal Agarwal,8,3,2,3,3,2,1,0,0,5,3
+3,54,9,Kamal Agarwal,Rishav Kacholia,6,2,3,1,1,0,1,0,0,2,4
+3,54,10,Rishav Kacholia,Kamal Agarwal,5,1,2,2,2,0,2,0,0,1,4
+4,83,1,Amik Parua,Dr. Niraj Priyadarshi,8,2,2,4,4,3,1,0,0,5,3
+4,83,2,Dr. Niraj Priyadarshi,Amik Parua,4,0,3,1,1,0,1,0,0,0,4
+4,83,3,Amik Parua,Dr. Niraj Priyadarshi,6,1,2,3,3,3,0,0,0,4,2
+4,83,4,Dr. Niraj Priyadarshi,Amik Parua,6,3,2,1,1,1,0,0,0,4,2
+4,83,5,Amik Parua,Dr. Niraj Priyadarshi,6,1,0,5,5,3,2,0,0,4,2
+4,83,6,Dr. Niraj Priyadarshi,Amik Parua,4,0,4,0,0,0,0,0,0,0,4
+4,83,7,Amik Parua,Dr. Niraj Priyadarshi,8,4,0,4,4,1,3,2,0,5,3
+4,71,1,Satyabrata Mishra,Ajit Bikram,4,3,0,1,1,1,0,0,0,4,0
+4,71,2,Ajit Bikram,Satyabrata Mishra,12,7,3,2,2,0,2,0,1,7,5
+4,71,3,Satyabrata Mishra,Ajit Bikram,6,2,1,3,3,2,1,1,0,4,2
+4,71,4,Ajit Bikram,Satyabrata Mishra,6,2,0,4,4,2,2,1,0,4,2
+4,71,5,Satyabrata Mishra,Ajit Bikram,6,2,2,2,2,2,0,0,0,4,2
+4,71,6,Ajit Bikram,Satyabrata Mishra,6,2,1,3,3,2,1,0,0,4,2
+4,71,7,Satyabrata Mishra,Ajit Bikram,4,0,1,3,3,0,3,1,0,0,4
+4,71,8,Ajit Bikram,Satyabrata Mishra,6,4,1,1,1,0,1,0,0,4,2
+4,71,9,Satyabrata Mishra,Ajit Bikram,5,3,1,1,1,1,0,0,0,4,1
+4,71,10,Ajit Bikram,Satyabrata Mishra,5,4,1,0,0,0,0,0,0,4,1
+4,67,1,Vineet Gupta,Dipanjan Mitra,4,2,0,2,2,2,0,0,0,4,0
+4,67,2,Dipanjan Mitra,Vineet Gupta,8,3,2,3,3,0,3,1,0,3,5
+4,67,3,Vineet Gupta,Dipanjan Mitra,4,3,0,1,1,1,0,0,0,4,0
+4,67,4,Dipanjan Mitra,Vineet Gupta,6,2,1,3,3,2,1,0,0,4,2
+4,67,5,Vineet Gupta,Dipanjan Mitra,6,2,0,4,4,2,2,0,0,4,2
+4,67,6,Dipanjan Mitra,Vineet Gupta,6,3,2,1,1,1,0,0,0,4,2
+4,67,7,Vineet Gupta,Dipanjan Mitra,5,0,2,3,3,1,2,0,0,1,4
+4,67,8,Dipanjan Mitra,Vineet Gupta,6,4,1,1,1,0,1,1,0,4,2
+4,67,9,Vineet Gupta,Dipanjan Mitra,6,2,2,2,2,2,0,0,0,4,2
+4,67,10,Dipanjan Mitra,Vineet Gupta,5,1,4,0,0,0,0,0,0,1,4
+4,75,1,Sanjoy Saha,Arin Neogi,5,1,3,1,1,0,1,0,0,1,4
+4,75,2,Arin Neogi,Sanjoy Saha,10,2,4,4,4,2,2,1,0,4,6
+4,75,3,Sanjoy Saha,Arin Neogi,10,2,2,6,6,4,2,1,0,6,4
+4,75,4,Arin Neogi,Sanjoy Saha,4,1,0,3,3,3,0,0,1,4,0
+4,75,5,Sanjoy Saha,Arin Neogi,6,4,2,0,0,0,0,0,0,4,2
+4,75,6,Arin Neogi,Sanjoy Saha,6,0,0,6,6,4,2,0,0,4,2
+4,75,7,Sanjoy Saha,Arin Neogi,8,3,1,4,4,2,2,0,0,5,3
+4,75,8,Arin Neogi,Sanjoy Saha,6,3,0,3,3,1,2,1,0,4,2
+4,75,9,Sanjoy Saha,Arin Neogi,6,2,3,1,1,0,1,0,0,2,4
+4,75,10,Arin Neogi,Sanjoy Saha,5,1,1,3,3,0,3,1,0,1,4
+4,75,11,Sanjoy Saha,Arin Neogi,4,2,0,2,2,2,0,0,0,4,0
+4,75,12,Arin Neogi,Sanjoy Saha,6,1,1,4,4,3,1,0,0,4,2
+4,75,13,Sanjoy Saha,Arin Neogi,5,1,2,2,2,0,2,0,0,1,4
+4,75,14,Arin Neogi,Sanjoy Saha,5,2,0,3,3,1,2,0,1,3,2
+4,76,1,Sagir Gogoi,Atulya Priyadarshi,5,3,0,2,2,1,1,0,0,4,1
+4,76,2,Atulya Priyadarshi,Sagir Gogoi,5,1,1,3,3,0,3,2,0,1,4
+4,76,3,Sagir Gogoi,Atulya Priyadarshi,6,1,2,3,3,1,2,0,0,2,4
+4,76,4,Atulya Priyadarshi,Sagir Gogoi,6,2,3,1,1,0,1,0,0,2,4
+4,76,5,Sagir Gogoi,Atulya Priyadarshi,8,1,2,5,5,2,3,0,0,3,5
+4,76,6,Atulya Priyadarshi,Sagir Gogoi,5,0,0,5,5,4,1,0,0,4,1
+4,76,7,Sagir Gogoi,Atulya Priyadarshi,16,5,3,8,8,4,4,1,0,9,7
+4,76,8,Atulya Priyadarshi,Sagir Gogoi,5,2,1,2,2,2,0,0,0,4,1
+4,76,9,Sagir Gogoi,Atulya Priyadarshi,12,5,1,6,6,2,4,0,0,7,5
+4,76,10,Atulya Priyadarshi,Sagir Gogoi,8,2,2,4,4,1,3,2,0,3,5
