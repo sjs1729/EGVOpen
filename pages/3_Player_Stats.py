@@ -135,7 +135,7 @@ def get_html_table(data, players):
                 match_url_link = "https://egvtennisopen.streamlit.app/Match_Stats?mid={}".format(a[k])
                 html_script += "<td style='padding:2px; text-align:center' rowspan='1'><a href={} style='text-decoration:underline;font-weight:bold;color:#0866FF;'>{}</a></td>".format(match_url_link,a[k])
             elif k == 'Against':
-                player_id = get_player_id(a[k],players)
+                player_id = get_player_id(a[k].split("(")[0],players)
                 player_url_link = "https://egvtennisopen.streamlit.app/Player_Stats?id={}".format(player_id)
                 html_script += "<td style='padding:2px; text-align:center' rowspan='1'><a href={} style='text-decoration:underline;font-weight:bold;color:#0866FF;'>{}</a></td>".format(player_url_link,a[k])
             else:
@@ -439,7 +439,7 @@ for idx , row in matches_played.iterrows():
     else:
         rslt = "Lost"
 
-    values = rslt, opponent, match_score , round_no, match_no
+    values = rslt, f"{opponent}({opp_point})", match_score , round_no, match_no
     #values = rslt, match_score, opponent, opp_point, round_no
     match_hist_rec.append(values)
 
