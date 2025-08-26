@@ -92,7 +92,7 @@ else:
 #st.write(html_text)
 #st.markdown(html_text, unsafe_allow_html=True)
 
-csvfile = convert_df(p_standing[display_cols])
+csvfile = convert_df(p_standing[display_cols].sort_values(['Rank','Player Name']))
 
 download_file_name= f"EGV_Tennis_{nRound}_Standings.csv"
 st.markdown('<BR>',unsafe_allow_html=True)
