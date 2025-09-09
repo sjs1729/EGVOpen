@@ -206,7 +206,7 @@ def get_html_table_scroll(data, header='Y'):
         url_link = "https://growealth.streamlit.app/Fact_Sheet?id={}".format(j)
 
 
-        html_script = html_script + "<tr style='border:none;font-family:Courier; color:Blue; font-size:10px;'>"
+        html_script = html_script + "<tr style='border:none;font-family:Courier; color:#2C64F6; font-size:10px;'>"
         a = data.loc[j]
         for k in cols:
             if k in ['Rel_MaxDD','Prob_10Pct','NIFTY_CORR']:
