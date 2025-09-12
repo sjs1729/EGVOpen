@@ -311,7 +311,7 @@ p_standing = player_standings()
 pl_stats = []
 pl_columns = ['Player ID','Player Name','Aces','Double Faults','Games Won','Games Lost','Points Won','Points Won Serving','Points Won Receiving','Service Breaks','Service Break - Conceded']
 for idx, row in p_standing.iterrows():
-    if idx < 45:
+    if idx <= 45:
         p_name=row['Player Name']
 
 
