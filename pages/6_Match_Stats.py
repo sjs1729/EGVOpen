@@ -45,9 +45,9 @@ img_style = """
 
 image_dir = "images/Match_Results/"
 
-st.sidebar.markdown("<BR>",unsafe_allow_html=True)
-image_html = rounded_image_html("Sponsor.jpg", 300)
-st.sidebar.markdown(image_html, unsafe_allow_html=True)
+#st.sidebar.markdown("<BR>",unsafe_allow_html=True)
+#image_html = rounded_image_html("Sponsor.jpg", 300)
+#st.sidebar.markdown(image_html, unsafe_allow_html=True)
 
 
 logo, heading, buf = st.columns((3,10,3),vertical_alignment="top")
