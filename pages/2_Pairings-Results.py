@@ -34,9 +34,9 @@ hide_streamlit_style = """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 
-st.sidebar.markdown("<BR>",unsafe_allow_html=True)
-image_html = rounded_image_html("Sponsor.jpg", 300)
-st.sidebar.markdown(image_html, unsafe_allow_html=True)
+#st.sidebar.markdown("<BR>",unsafe_allow_html=True)
+#image_html = rounded_image_html("Sponsor.jpg", 300)
+#st.sidebar.markdown(image_html, unsafe_allow_html=True)
 
 @st.cache_data()
 def convert_df(df):
