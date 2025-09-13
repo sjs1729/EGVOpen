@@ -93,7 +93,7 @@ match_results = Load_MatchResults()
 
 incomplete_status = ['Scheduled','Re-Scheduled','Rescheduled','Rain Delayed','In-Progress']
 
-completed_matches = match_results[match_results['Status'] == 'Completed'].sort_values(['Round#','Match#'])
+completed_matches = match_results[match_results['Status'] == 'Completed'].sort_values(['Scheduled_DateTime'], ascending=False)
 sched_matches = match_results[match_results['Status'].isin(incomplete_status)].sort_values(['Round#','Scheduled_DateTime'])
 sched_match_cols = ['Match#','Round#','Player1 Name','Player2 Name','Scheduled Date','Schedule Time','Status']
 completed_match_cols = ['Match#','Round#','Player1 Name','Player2 Name','Match Date','Match Score','Winner']
@@ -161,7 +161,7 @@ st.markdown(f"""
 
 
 
-tab1, tab2 = st.tabs(["Upcoming Matches","Completed Matches"])
+tab1, tab2 = st.tabs(["Upcoming Matches","Recently Completed Matches"])
 
 with tab1:
     st.markdown('<BR>',unsafe_allow_html=True)
@@ -171,5 +171,5 @@ with tab1:
 
 with tab2:
     st.markdown('<BR>',unsafe_allow_html=True)
-    html_txt = get_html_hyperlink_table(completed_matches[completed_match_cols],players)
+    html_txt = get_html_hyperlink_table(completed_matches[completed_match_cols].head(20),players)
     st.markdown(html_txt, unsafe_allow_html=True)
