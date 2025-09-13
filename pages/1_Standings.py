@@ -52,9 +52,10 @@ logo.image("EGVOpenLogo.png", width=100)
 heading.markdown('<p style="font-size:44px;font-weight: bold;text-align:center;vertical-align:middle;color:#2C64F6;margin:0px;padding:0px">Current Standings</p>', unsafe_allow_html=True)
 st.markdown('<BR><BR>', unsafe_allow_html=True)
 
-st.sidebar.markdown("<BR>",unsafe_allow_html=True)
-image_html = rounded_image_html("Sponsor.jpg", 300)
-st.sidebar.markdown(image_html, unsafe_allow_html=True)
+#st.sidebar.markdown("<BR>",unsafe_allow_html=True)
+#image_html = rounded_image_html("Sponsor.jpg", 300)
+#st.sidebar.markdown(image_html, unsafe_allow_html=True)
+
 nRound = get_tournament_status()
 
 display_cols=['Rank','Player Name','Matches Played','Wins#','Losses#','Points','TB1', 'TB2', 'TB3']
