@@ -203,7 +203,7 @@ if "curr_index" not in st.session_state:
 
 
 
-buf1,prev,next,buf2 = st.columns((6,1,1,6))
+buf1,prev,next,buf2 = st.columns((5.5,1,1,6))
 
 if prev.button("Prev"):
     if st.session_state.curr_index == 1:
