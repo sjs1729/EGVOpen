@@ -40,7 +40,7 @@ logo, heading, buf = st.columns((3,10,3),vertical_alignment="top")
 logo.image("EGVOpenLogo.png", width=100)
 heading.markdown('<p style="font-size:40px;font-weight: bold;text-align:center;vertical-align:middle;color:blue;margin:0px;padding:0px">EGV Tennis Open - 2025</p>', unsafe_allow_html=True)
 
-#left,centre, right = st.columns((1,300,1))
+left,centre, right = st.columns((1,300,1))
 image_path = "images/EGVOpen_Banner.jpg"
 img_b64 = image_to_base64(image_path)
 
@@ -63,7 +63,6 @@ html = f"""
 
 #st.markdown(html, unsafe_allow_html=True)
 
-#st.image("images/EGVOpen_Banner.jpeg", width=1000)
 
 @st.cache_data()
 def Initial_Player_List():
@@ -79,6 +78,10 @@ players = Load_Players()
 
 
 
+@st.cache_data()
+def get_award_info():
+    df = pd.read_csv("Awards.csv")
+    return df
 
 
 
@@ -91,9 +94,12 @@ players = Load_Players()
 
 match_results = Load_MatchResults()
 
+awards = get_award_info()
+
 incomplete_status = ['Scheduled','Re-Scheduled','Rescheduled','Rain Delayed','In-Progress']
 
 completed_matches = match_results[match_results['Status'] == 'Completed'].sort_values(['Scheduled_DateTime'], ascending=False)
+#completed_matches = match_results[match_results['Status'] == 'Completed'].sort_values(['Round#','Match#'])
 sched_matches = match_results[match_results['Status'].isin(incomplete_status)].sort_values(['Round#','Scheduled_DateTime'])
 sched_match_cols = ['Match#','Round#','Player1 Name','Player2 Name','Scheduled Date','Schedule Time','Status']
 completed_match_cols = ['Match#','Round#','Player1 Name','Player2 Name','Match Date','Match Score','Winner']
@@ -117,6 +123,36 @@ for _, row in sched_matches.iterrows():
         scroll_message = scroll_message + sch_matches_txt
 
 
+if scroll_message != "":
+    more_than_one_match = scroll_message.split("|")
+
+    if len(more_than_one_match) > 1:
+        scroll_message = f"Today's Matches : {scroll_message[1:]}"
+    else:
+        scroll_message = f"Today's Match : {scroll_message[1:]}"
+
+
+awards_scroll = ""
+for _, row in awards.iterrows():
+
+    #st.write(row)
+
+    award_cat = row['Award Category']
+    award_winner = row['Award Winner']
+
+    prefix_str = " "
+    suffix_str = " | "
+
+    #if award_cat in ["Men's Champion", "Boy's Winner", "Rising Star", "Tennis Excellence & Fair Play","Best Tennis Debut", "Most Aces"]:
+    #    prefix_str = "** "
+
+
+    #if award_cat in ["Men's 2nd Runner Up", "Boy's Runner Up", "Rising Star", "Tennis Excellence & Fair Play","Best Tennis Debut", "Most Aces"]:
+    #    prefix_str = " **   "
+
+    awards_scroll = awards_scroll + f"{prefix_str}{award_cat} - {award_winner}{suffix_str}"
+
+
 #message = '🎉🎈🎂 Wishing our EGV diamond marquee  SHUBHAM HAZRA  a Very Happy Birthday 🎂🎈🎉! Loads of luck for the tournament ahead 🏆!'
 message = ""
 st.markdown(f"""
@@ -136,7 +172,7 @@ st.markdown(f"""
             padding-left: 100%;
             animation: ticker 80s linear infinite;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 24px;
             color: magenta;
         }}
 
@@ -147,7 +183,7 @@ st.markdown(f"""
         </style>
 
         <div class="ticker-wrapper">
-            <div class="ticker-text">{scroll_message[1:]}</div>
+            <div class="ticker-text">{awards_scroll}</div>
         </div><BR>
     """, unsafe_allow_html=True)
 
@@ -159,17 +195,41 @@ st.markdown(f"""
 #st.sidebar.markdown(image_html, unsafe_allow_html=True)
 
 
+st.markdown('<BR>',unsafe_allow_html=True)
+
+if "curr_index" not in st.session_state:
+    st.session_state.curr_index = 2
+    st.balloons()
 
 
-tab1, tab2 = st.tabs(["Upcoming Matches","Recently Completed Matches"])
 
-with tab1:
-    st.markdown('<BR>',unsafe_allow_html=True)
+buf1,prev,next,buf2 = st.columns((6,1,1,6))
 
-    html_txt = get_html_hyperlink_table(sched_matches[sched_match_cols],players,'Y')
-    st.markdown(html_txt, unsafe_allow_html=True)
+if prev.button("Prev"):
+    if st.session_state.curr_index == 1:
+        st.session_state.curr_index = 50
+    else:
+        st.session_state.curr_index -= 1
 
-with tab2:
-    st.markdown('<BR>',unsafe_allow_html=True)
-    html_txt = get_html_hyperlink_table(completed_matches[completed_match_cols].head(20),players)
-    st.markdown(html_txt, unsafe_allow_html=True)
+if next.button("Next"):
+    if st.session_state.curr_index == 50:
+        st.session_state.curr_index = 1
+    else:
+        st.session_state.curr_index += 1
+
+buf1,img,buf2 = st.columns((2,8,2))
+image_placeholder = img.empty()
+image_placeholder.image(f"images/awards/{st.session_state.curr_index}.jpeg", width=600)
+
+#tab1, tab2 = st.tabs(["Upcoming Matches","Recent Completed Matches"])
+
+#with tab1:
+#    st.markdown('<BR>',unsafe_allow_html=True)
+
+#    html_txt = get_html_hyperlink_table(sched_matches[sched_match_cols],players,'Y')
+#    st.markdown(html_txt, unsafe_allow_html=True)
+
+#with tab2:
+#    st.markdown('<BR>',unsafe_allow_html=True)
+#    html_txt = get_html_hyperlink_table(completed_matches[completed_match_cols].head(22),players)
+#    st.markdown(html_txt, unsafe_allow_html=True)
