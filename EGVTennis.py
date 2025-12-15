@@ -207,19 +207,30 @@ buf1,prev,next,buf2 = st.columns((5.5,1,1,6))
 
 if prev.button("Prev"):
     if st.session_state.curr_index == 1:
-        st.session_state.curr_index = 50
+        st.session_state.curr_index = 49
+    elif st.session_state.curr_index == 2:
+        st.session_state.curr_index = 48
     else:
-        st.session_state.curr_index -= 1
+        st.session_state.curr_index -= 2
 
 if next.button("Next"):
-    if st.session_state.curr_index == 50:
+    if st.session_state.curr_index == 49:
         st.session_state.curr_index = 1
+    elif st.session_state.curr_index == 50:
+        st.session_state.curr_index = 2
     else:
-        st.session_state.curr_index += 1
+        st.session_state.curr_index += 2
 
-buf1,img,buf2 = st.columns((2,8,2))
-image_placeholder = img.empty()
-image_placeholder.image(f"images/awards/{st.session_state.curr_index}.jpeg", width=600)
+img1, buf,img2 = st.columns((6,1,6),vertical_alignment="bottom")
+image_placeholder1 = img1.empty()
+image_placeholder2 = img2.empty()
+
+image_placeholder1.image(f"images/awards/{st.session_state.curr_index}.jpeg", width=600)
+
+if st.session_state.curr_index == 50:
+    image_placeholder2.image(f"images/awards/{1}.jpeg", width=600)
+else:
+    image_placeholder2.image(f"images/awards/{st.session_state.curr_index + 1}.jpeg", width=600)
 
 #tab1, tab2 = st.tabs(["Upcoming Matches","Recent Completed Matches"])
 
